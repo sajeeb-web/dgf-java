@@ -1,0 +1,6 @@
+Bundle-Name: dgfood-dealer-registration-profile-web
+Bundle-SymbolicName: bd.gov.dgfood.dealer.registration.profile
+Bundle-Version: 1.0.0
+Export-Package: bd.gov.dgfood.dealer.registration.profile.constants
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

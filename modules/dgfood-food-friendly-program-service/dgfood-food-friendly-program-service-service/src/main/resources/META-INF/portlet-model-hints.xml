@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="bd.gov.dgfood.food.friendly.program.model.DlrDistributionDetails">
+		<field name="dstrbnId" type="long" />
+		<field name="dlrRegNo" type="long" />
+		<field name="ffpRegstrId" type="long" />
+		<field name="selLingDate" type="Date" />
+		<field name="commodityId" type="long" />
+		<field name="commodityName" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="sellingPrice" type="String">
+			<hint name="max-length">4</hint>
+		</field>
+		<field name="sellingQty" type="long" />
+		<field name="stockBfrSelling" type="long" />
+		<field name="stockAfterSelling" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="companyId" type="long" />
+		<field name="inventoryId" type="long" />
+	</model>
+	<model name="bd.gov.dgfood.food.friendly.program.model.DlrFfpOmsAllcNtfyDetails">
+		<field name="allocNtfyId" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="prgrmType" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="salesOrgName" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="dstrbtnChnnl" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="year" type="long" />
+		<field name="salesOffice" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="memoNo" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="duration" type="String">
+			<hint name="max-length" />
+		</field>
+		<field name="commodityId" type="long" />
+		<field name="commodityName" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="econmcPrice" type="long" />
+		<field name="salePrceToEndCstmr" type="long" />
+		<field name="unitPrice" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="maxAlltmntPDay" type="float" />
+		<field name="maxSellQtyPCstmr" type="float" />
+		<field name="createDate" type="Date" />
+	</model>
+	<model name="bd.gov.dgfood.food.friendly.program.model.FfpbDetails">
+		<field name="ffpRegstrId" type="long" />
+		<field name="nationalId" type="long" />
+		<field name="dlrRegNo" type="long" />
+		<field name="ffpCardNo" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="dateOfBirth" type="Date" />
+		<field name="mobileNo" type="String">
+			<hint name="max-length">12</hint>
+		</field>
+		<field name="emialId" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="maritalStatus" type="long" />
+		<field name="gender" type="long" />
+		<field name="spouseNid" type="long" />
+		<field name="prstAddrRegion" type="String">
+			<hint name="max-length">5</hint>
+		</field>
+		<field name="prstAddrDisrict" type="String">
+			<hint name="max-length">5</hint>
+		</field>
+		<field name="prstAddrUpzilla" type="String">
+			<hint name="max-length">5</hint>
+		</field>
+		<field name="prstAddrUnion" type="String">
+			<hint name="max-length">5</hint>
+		</field>
+		<field name="prstAddrVillage" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="prstAddrWard" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="prstAddrZip" type="long" />
+		<field name="prstAddrPstoffc" type="long" />
+		<field name="prstAddrHoseaddr" type="String">
+			<hint name="max-length">75</hint>
+		</field>
+		<field name="ffpApplCrtdBy" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="ffpApplMdfyBy" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="applApprejCmnts" type="String">
+			<hint name="max-length">50</hint>
+		</field>
+		<field name="ffpbApplStatus" type="long" />
+		<field name="version" type="float" />
+		<field name="status" type="long" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusDate" type="Date" />
+	</model>
+	<model name="bd.gov.dgfood.food.friendly.program.model.InvtoryDetails">
+		<field name="inventoryId" type="long" />
+		<field name="dlrRegNo" type="long" />
+		<field name="allcNtfyNo" type="long" />
+		<field name="fromDate" type="Date" />
+		<field name="toDate" type="Date" />
+		<field name="commodityId" type="long" />
+		<field name="commodityName" type="String">
+			<hint name="max-length">30</hint>
+		</field>
+		<field name="noOfIndents" type="long" />
+		<field name="receivedQty" type="float" />
+		<field name="soldQty" type="float" />
+		<field name="balanceQty" type="float" />
+		<field name="createDate" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createdBy" type="long" />
+	</model>
+</model-hints>

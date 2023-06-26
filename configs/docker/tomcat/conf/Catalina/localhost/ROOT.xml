@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context crossContext="true">
+	<JarScanner className="com.liferay.support.tomcat.util.scan.NOPJarScanner" />
+
+	<Manager pathname="" />
+
+	<Resource name="jdbc/liferay" 
+      global="jdbc/liferay" 
+      auth="Container" 
+      type="javax.sql.DataSource" 
+      driverClassName="oracle.jdbc.driver.OracleDriver" 
+      url="jdbc:oracle:thin:@172.17.0.6:1521/orcl" 
+      username="DGF_LIFERAY_DEV" 
+      password="DGF_LIFERAY_DEV" 
+      
+      maxActive="100" 
+      maxIdle="20" 
+      minIdle="5" 
+      maxWait="10000"/>
+</Context>
+

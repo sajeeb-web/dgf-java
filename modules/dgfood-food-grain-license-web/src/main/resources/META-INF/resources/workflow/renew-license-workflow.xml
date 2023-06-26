@@ -1,0 +1,1257 @@
+<?xml version="1.0"?>
+
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_7.4.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.4.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_4_0.xsd"
+>
+	<version>52</version>
+	<condition>
+		<name>37a05b61-93a5-4c3e-afbf-925eaebcf83a</name>
+		<description>Execute conditional logic.</description>
+		<metadata><![CDATA[{"xy":[49,195],"transitions":{"4ea54da2-ed22-4897-8f54-981bea27b0fe":{"bendpoints":[]}}}]]></metadata>
+		<labels>
+			<label language-id="en_US">
+				Condition
+			</label>
+			<label language-id="en_GB">
+				Condition
+			</label>
+			<label language-id="bn_BD">
+				Condition
+			</label>
+		</labels>
+		<script>
+			<![CDATA[import bd.gov.dgfood.food.grain.license.model.DgfFglPreDtls;
+import bd.gov.dgfood.food.grain.license.service.DgfFglPreDtlsLocalServiceUtil;
+import bd.gov.dgfood.food.grain.license.model.DgfRenewLicense;
+import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicense dgfRenewLicense = DgfRenewLicenseLocalServiceUtil.getDgfRenewLicense(classPK);
+DgfFglPreDtls dgfFglPreDtlsObj = DgfFglPreDtlsLocalServiceUtil.getDgfFglPreDtls(dgfRenewLicense.getFglPrePrimaryId());
+
+String businessType = dgfFglPreDtlsObj.getBusinessType().toUpperCase();
+boolean isUcf = businessType.equals("ATTACHAKKI") || businessType.equals("RETAILERS");
+if(isUcf ){
+returnValue = "4ea54da2-ed22-4897-8f54-981bea27b0fe"
+}else{
+returnValue = "54440de9-9024-4301-86e4-bec38ac8fa8f"
+}
+
+]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						Other
+					</label>
+					<label language-id="en_GB">
+						Other
+					</label>
+					<label language-id="bn_BD">
+						Other
+					</label>
+				</labels>
+				<name>54440de9-9024-4301-86e4-bec38ac8fa8f</name>
+				<target>1eb2ac0c-569c-4dbc-9b7d-fa83b751ff00</target>
+				<default>true</default>
+			</transition>
+            <transition>
+                <target>3a1810bb-c883-43a1-95c0-d7630d16f75f</target>
+                <name>4ea54da2-ed22-4897-8f54-981bea27b0fe</name>
+                <default>true</default>
+            </transition>
+		</transitions>
+	</condition>
+	<condition>
+		<name>1eb2ac0c-569c-4dbc-9b7d-fa83b751ff00</name>
+		<description>Execute conditional logic.</description>
+		<metadata><![CDATA[{"xy":[-96,58],"transitions":{"fdbd1bee-baa9-47ad-8d93-574bf656fb33":{"bendpoints":[]}}}]]></metadata>
+		<labels>
+			<label language-id="en_US">
+				Condition
+			</label>
+			<label language-id="en_GB">
+				Condition
+			</label>
+			<label language-id="bn_BD">
+				Condition
+			</label>
+		</labels>
+		<script>
+			<![CDATA[import bd.gov.dgfood.food.grain.license.model.DgfFglPreDtls;
+import bd.gov.dgfood.food.grain.license.service.DgfFglPreDtlsLocalServiceUtil;
+import bd.gov.dgfood.food.grain.license.model.DgfRenewLicense;
+import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicense dgfRenewLicense = DgfRenewLicenseLocalServiceUtil.getDgfRenewLicense(classPK);
+boolean isAcf = DgfFglPreDtlsLocalServiceUtil.checkAcfUsersExistByLocation(dgfRenewLicense.getFglPrePrimaryId());
+boolean isCcdr = DgfFglPreDtlsLocalServiceUtil.checkCcdrUsersExistByLocation(dgfRenewLicense.getFglPrePrimaryId());
+
+if(isAcf ){
+returnValue = "b9f8d217-5d01-4a9a-bf79-0df700e62e94"
+}else if(isCcdr ){
+returnValue = "fdbd1bee-baa9-47ad-8d93-574bf656fb33"
+}else{
+returnValue = "d56959ee-6c90-43e0-a8a6-c7c63b8a4042"
+}]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+            <transition>
+                <target>bb4f8f00-f694-4d0e-bffd-b1efbcbb6f4f</target>
+                <name>b9f8d217-5d01-4a9a-bf79-0df700e62e94</name>
+                <default>true</default>
+            </transition>
+            <transition>
+                <target>a773d777-46a1-45e7-8cc5-52460cda3d8f</target>
+                <name>d56959ee-6c90-43e0-a8a6-c7c63b8a4042</name>
+                <default>false</default>
+            </transition>
+            <transition>
+                <target>9f50006f-6b24-4bb9-b8cb-fdb8bee8122f</target>
+                <name>fdbd1bee-baa9-47ad-8d93-574bf656fb33</name>
+                <default>false</default>
+            </transition>
+		</transitions>
+	</condition>
+	<condition>
+		<name>def1453f-af7d-4e39-9cd0-5d4737f0928e</name>
+		<description>Execute conditional logic.</description>
+		<metadata><![CDATA[{"xy":[279,-208],"transitions":{"45831ee4-b468-423d-93f9-8ace018bfc3d":{"bendpoints":[]}}}]]></metadata>
+		<labels>
+			<label language-id="en_US">
+				Condition
+			</label>
+			<label language-id="en_GB">
+				Condition
+			</label>
+			<label language-id="bn_BD">
+				Condition
+			</label>
+		</labels>
+		<script>
+			<![CDATA[import bd.gov.dgfood.food.grain.license.model.DgfFglPreDtls;
+import bd.gov.dgfood.food.grain.license.service.DgfFglPreDtlsLocalServiceUtil;
+import bd.gov.dgfood.food.grain.license.model.DgfRenewLicense;
+import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicense dgfRenewLicense = DgfRenewLicenseLocalServiceUtil.getDgfRenewLicense(classPK);
+boolean isCcdr = DgfFglPreDtlsLocalServiceUtil.checkCcdrUsersExistByLocation(dgfRenewLicense.getFglPrePrimaryId());
+
+if(isCcdr){
+returnValue = "45831ee4-b468-423d-93f9-8ace018bfc3d"
+}else{
+returnValue = "3e9c96a4-9fdf-4264-9e1d-c164d4f8a776"
+}]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+            <transition>
+                <target>5e69c059-2165-4b13-a5c0-9b593e8f8125</target>
+                <name>3e9c96a4-9fdf-4264-9e1d-c164d4f8a776</name>
+                <default>false</default>
+            </transition>
+            <transition>
+                <target>e98bf88c-d4ee-4eb2-a9a7-47c66b02d59f</target>
+                <name>45831ee4-b468-423d-93f9-8ace018bfc3d</name>
+                <default>true</default>
+            </transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>96849ab4-a692-4f0d-b627-36e82b5cba03</name>
+		<description>Begin a workflow.</description>
+		<metadata><![CDATA[{"xy":[-297,185],"transitions":{"dc09b838-a63b-4137-90aa-7a78ad8e6681":{"bendpoints":[]}}}]]></metadata>
+		<initial>true</initial>
+		<labels>
+			<label language-id="en_US">
+				Start
+			</label>
+			<label language-id="en_GB">
+				Start
+			</label>
+			<label language-id="bn_BD">
+				Start
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						Transition Label
+					</label>
+					<label language-id="en_GB">
+						Transition Label
+					</label>
+					<label language-id="bn_BD">
+						Transition Label
+					</label>
+				</labels>
+				<name>dc09b838-a63b-4137-90aa-7a78ad8e6681</name>
+				<target>37a05b61-93a5-4c3e-afbf-925eaebcf83a</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>5957e065-49ce-4239-8495-7d862909ba50</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1384.2909378713293,
+						-65.16175948708117
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approved</name>
+				<description></description>
+				<status>0</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<action>
+				<name>Renew License Expire date By DCF Approved</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.extendRenewLicenseExpiredDate(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Approved
+			</label>
+			<label language-id="en_GB">
+				Approved
+			</label>
+			<label language-id="bn_BD">
+				Approved
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>756b0c7c-9274-4b0e-958c-51d2e98bfd5f</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1401.0564534824105,
+						270.8358035793584
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>6c7f6266-965e-4ef4-8e40-2f4b3461e74f</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						618.9436128126349,
+						387.86716500213254
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>0b08dfea-9ad9-4ac9-b062-355e29bef761</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1078.8523540519684,
+						550.0821115234014
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approved</name>
+				<description></description>
+				<status>0</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<action>
+				<name>Renew License Expire date By UCF Approved</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.extendRenewLicenseExpiredDate(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Approved
+			</label>
+			<label language-id="en_GB">
+				Approved
+			</label>
+			<label language-id="bn_BD">
+				Approved
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>5bf38ba6-5039-4dbc-a26e-a7856aa945fa</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1078.013907638132,
+						777.8561729347463
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>5e69c059-2165-4b13-a5c0-9b593e8f8125</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[696,-182],"transitions":{"c239f4bf-2cf7-4bd7-9718-3f5a5cecbd3a":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>ACF Approved SMS Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "bb4f8f00-f694-4d0e-bffd-b1efbcbb6f4f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendAcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+            <transition>
+                <target>a773d777-46a1-45e7-8cc5-52460cda3d8f</target>
+                <name>c239f4bf-2cf7-4bd7-9718-3f5a5cecbd3a</name>
+                <default>true</default>
+            </transition>
+		</transitions>
+	</state>
+	<state>
+		<name>97289e84-b9a9-41f3-ad58-06180eb71c40</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[569,541],"transitions":{"b7280305-ccfd-496d-beed-4811dce86f79":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>UCF Approved SMS Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "3a1810bb-c883-43a1-95c0-d7630d16f75f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendUcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVE
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>b7280305-ccfd-496d-beed-4811dce86f79</name>
+				<target>0b08dfea-9ad9-4ac9-b062-355e29bef761</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>eace8ddc-24a7-423a-8d60-9dfd807e401a</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[977,-51],"transitions":{"4e94b916-5c81-4db9-817e-c4b1e26aef43":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>DCF Approved SMS Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "a773d777-46a1-45e7-8cc5-52460cda3d8f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendDcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVE
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>4e94b916-5c81-4db9-817e-c4b1e26aef43</name>
+				<target>5957e065-49ce-4239-8495-7d862909ba50</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>ca74efb9-03a0-4960-8179-3afec6fb6c50</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[967,269],"transitions":{"d3d8a45f-55c9-45a6-b7a8-5ec74afb50c3":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>DCF Reject SMS Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "a773d777-46a1-45e7-8cc5-52460cda3d8f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendDcfRejectSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>d3d8a45f-55c9-45a6-b7a8-5ec74afb50c3</name>
+				<target>756b0c7c-9274-4b0e-958c-51d2e98bfd5f</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>52dc1377-b52b-40c9-b8fd-9a5df5226889</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[579,764],"transitions":{"f827032a-2d4a-44a4-95c9-65d0fead5144":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>UCF Reject SMS Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "3a1810bb-c883-43a1-95c0-d7630d16f75f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendUcfRejectSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>f827032a-2d4a-44a4-95c9-65d0fead5144</name>
+				<target>5bf38ba6-5039-4dbc-a26e-a7856aa945fa</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>43077b6b-de5f-4f10-8b9e-8f572bed71d6</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[429,242],"transitions":{"67b2866f-3741-44be-80c7-1f20e08fde62":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>ACF Reject SMS Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "bb4f8f00-f694-4d0e-bffd-b1efbcbb6f4f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendAcfRejectSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>67b2866f-3741-44be-80c7-1f20e08fde62</name>
+				<target>6c7f6266-965e-4ef4-8e40-2f4b3461e74f</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>58e34c33-e46e-4215-878b-774636bed613</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[639,-704],"transitions":{"a525dc0b-87f6-4671-9cc6-a96983be5985":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>CCDR Approved SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "9f50006f-6b24-4bb9-b8cb-fdb8bee8122f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendAcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>a525dc0b-87f6-4671-9cc6-a96983be5985</name>
+				<target>5e06ba9d-c32b-498c-a61b-23d2065050f8</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>5e06ba9d-c32b-498c-a61b-23d2065050f8</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1073.1585088350926,
+						-695.6388753438724
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approved</name>
+				<description></description>
+				<status>0</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<action>
+				<name>Renew License Approved By CCDR</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.extendRenewLicenseExpiredDate(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Approved
+			</label>
+			<label language-id="en_GB">
+				Approved
+			</label>
+			<label language-id="bn_BD">
+				Approved
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>cfa0ff9d-1483-4e85-8d48-b153a3e5713e</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[634,-428],"transitions":{"50509ef4-4587-4246-9a1e-02e954ffb069":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>CCDR Reject SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "9f50006f-6b24-4bb9-b8cb-fdb8bee8122f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendAcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>50509ef4-4587-4246-9a1e-02e954ffb069</name>
+				<target>6282e433-06a9-42bb-8fdc-d1d7cc5e8766</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>6282e433-06a9-42bb-8fdc-d1d7cc5e8766</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1076.8402021610086,
+						-422.7481261115774
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>e98bf88c-d4ee-4eb2-a9a7-47c66b02d59f</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata><![CDATA[{"xy":[354,-366],"transitions":{"6e31bbb7-a46a-4390-8897-cdb3e3bd3fbb":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>ACF Approved SMS Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "bb4f8f00-f694-4d0e-bffd-b1efbcbb6f4f";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.sendAcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+            <transition>
+                <target>9f50006f-6b24-4bb9-b8cb-fdb8bee8122f</target>
+                <name>6e31bbb7-a46a-4390-8897-cdb3e3bd3fbb</name>
+                <default>true</default>
+            </transition>
+		</transitions>
+	</state>
+	<task>
+		<name>bb4f8f00-f694-4d0e-bffd-b1efbcbb6f4f</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata><![CDATA[{"xy":[259,-50],"transitions":{"e59cc41d-e04e-4f56-8e9f-2ed7e8337298":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>acf update status</name>
+				<description></description>
+				<status>1</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<action>
+				<name>Acf Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.setLicenseAcfUserNotificationEvent(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>44848</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				ACF Reviewer
+			</label>
+			<label language-id="en_GB">
+				ACF Reviewer
+			</label>
+			<label language-id="bn_BD">
+				ACF Reviewer
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>34a22a6d-a070-4f8f-be50-e2cdc3986fb4</name>
+				<target>def1453f-af7d-4e39-9cd0-5d4737f0928e</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>e59cc41d-e04e-4f56-8e9f-2ed7e8337298</name>
+				<target>43077b6b-de5f-4f10-8b9e-8f572bed71d6</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>a773d777-46a1-45e7-8cc5-52460cda3d8f</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata><![CDATA[{"xy":[661,124],"transitions":{"6da87711-9952-40e7-9f96-6ab1d9405f94":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>initial approved</name>
+				<description></description>
+				<status>1</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<action>
+				<name>DCFNotification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+String nodeId = "a773d777-46a1-45e7-8cc5-52460cda3d8f";
+DgfRenewLicenseLocalServiceUtil.getDcfUserIdByLocationAndSendNotificationByNodeId(classPK, nodeId)]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>44869</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				DCF Reviewer
+			</label>
+			<label language-id="en_GB">
+				DCF Reviewer
+			</label>
+			<label language-id="bn_BD">
+				DCF Reviewer
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVE
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>25c93969-11de-4358-bf97-de2fdf8ac440</name>
+				<target>eace8ddc-24a7-423a-8d60-9dfd807e401a</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>6da87711-9952-40e7-9f96-6ab1d9405f94</name>
+				<target>ca74efb9-03a0-4960-8179-3afec6fb6c50</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>3a1810bb-c883-43a1-95c0-d7630d16f75f</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata><![CDATA[{"xy":[156,523],"transitions":{"3dc52c06-e9b1-4975-8f52-21b044fe531c":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>ucf update status</name>
+				<description></description>
+				<status>1</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<action>
+				<name>Ucf Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.setLicenseUcfUserNotificationEvent(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>44867</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				UCF Reviewer
+			</label>
+			<label language-id="en_GB">
+				UCF Reviewer
+			</label>
+			<label language-id="bn_BD">
+				UCF Reviewer
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVE
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>e3da7679-c799-4c6e-a3c1-8ebdd700aa57</name>
+				<target>97289e84-b9a9-41f3-ad58-06180eb71c40</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>3dc52c06-e9b1-4975-8f52-21b044fe531c</name>
+				<target>52dc1377-b52b-40c9-b8fd-9a5df5226889</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>9f50006f-6b24-4bb9-b8cb-fdb8bee8122f</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata><![CDATA[{"xy":[231,-589],"transitions":{"7be61de4-f762-4832-a2d6-f5d882c19f18":{"bendpoints":[]}}}]]></metadata>
+		<actions>
+			<action>
+				<name>Update status</name>
+				<description></description>
+				<status>1</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+			<action>
+				<name>CCDR Notifications</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.food.grain.license.service.DgfRenewLicenseLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfRenewLicenseLocalServiceUtil.setLicenseCcdrUserNotificationEvent(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>222905</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				CCDR Review
+			</label>
+			<label language-id="en_GB">
+				CCDR Review
+			</label>
+			<label language-id="bn_BD">
+				CCDR Review
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>58f0b450-b99e-4175-8545-558a736d683e</name>
+				<target>58e34c33-e46e-4215-878b-774636bed613</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>7be61de4-f762-4832-a2d6-f5d882c19f18</name>
+				<target>cfa0ff9d-1483-4e85-8d48-b153a3e5713e</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+</workflow-definition>

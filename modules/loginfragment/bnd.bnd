@@ -1,0 +1,7 @@
+Bundle-Name: loginfragment
+Bundle-SymbolicName: loginfragment
+Bundle-Version: 1.0.0
+Fragment-Host: com.liferay.login.web;bundle-version="6.0.37"
+Portal-Bundle-Version: 7.4.13
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

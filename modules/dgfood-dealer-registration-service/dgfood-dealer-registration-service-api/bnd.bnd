@@ -1,0 +1,10 @@
+Bundle-Name: dgfood-dealer-registration-service-api
+Bundle-SymbolicName: bd.gov.dgfood.dealer.registration.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	bd.gov.dgfood.dealer.registration.exception,\
+	bd.gov.dgfood.dealer.registration.model,\
+	bd.gov.dgfood.dealer.registration.service,\
+	bd.gov.dgfood.dealer.registration.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../dgfood-dealer-registration-service-service/service.xml

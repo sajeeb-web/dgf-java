@@ -1,0 +1,6 @@
+Bundle-Name: dgfood-food-grain-license-pie-chart
+Bundle-SymbolicName: dgfood.food.grain.license.pie.chart
+Bundle-Version: 1.0.0
+Export-Package: dgfood.food.grain.license.pie.chart.constants
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

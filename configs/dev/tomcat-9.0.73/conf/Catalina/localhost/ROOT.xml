@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context crossContext="true">
+      <JarScanner className="com.liferay.support.tomcat.util.scan.NOPJarScanner" />
+
+      <Manager pathname="" />
+
+      <Resource name="jdbc/liferay"
+            global="jdbc/liferay"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            url="jdbc:oracle:thin:@192.168.1.40:11521/orcl?oracle.net.disableOob=true"
+            username="DGF_LIFERAY_DEV"
+            password="DGF_LIFERAY_DEV"
+            maxActive="100"
+            maxIdle="20"
+            minIdle="5"
+            maxWait="10000" />
+
+      <Resource name="jdbc/foodprod"
+            global="jdbc/foodprod"
+            auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            url="jdbc:oracle:thin:@192.168.1.40:11521/orcl?oracle.net.disableOob=true"
+            username="foodprod"
+            password="foodprod"
+            maxActive="100"
+            maxIdle="20"
+            minIdle="5"
+            maxWait="10000" />
+</Context>

@@ -1,0 +1,7 @@
+Bundle-Name: dgfood-food-grain-license-duplicate-web
+Bundle-SymbolicName: bd.gov.dgfood.food.grain.license.duplicate
+Bundle-Version: 1.0.0
+Export-Package: bd.gov.dgfood.food.grain.license.duplicate.constants
+
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

@@ -1,0 +1,153 @@
+.dgfood-dealer-registration-profile-web {
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.green-text {
+    color: #5bb600;
+}
+
+.green-bg {
+    background-color: #5bb600;
+}
+
+li {
+    list-style: none;
+}
+
+.alignMe {
+    padding-left: 0 !important;
+}
+
+.alignMe .custom-colon {
+    display: inline-block;
+    width: 50%;
+    position: relative;
+    padding-right: 5px;
+    /* Ensures colon does not overlay the text */
+
+}
+
+.alignMe .custom-colon::after {
+    content: ":";
+    position: absolute;
+    right: 5px;
+}
+
+.mark {
+    background-color: #bcf4bc !important;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 6px 15px 6px 15px;
+}
+
+.mark:hover {
+    background-color: #c8f8c8 !important;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-div {
+    padding: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.green-text {
+    color: #5bb600;
+}
+
+.green-bg {
+    background-color: #5bb600 !important;
+    color: #fff !important;
+}
+
+.green-bg:hover {
+    background-color: #4a8a09 !important;
+    color: #fff !important;
+}
+
+.user_avatar {
+    background-color: #d6d4d4;
+    width: 100%;
+    height: 120px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.user_avatar i {
+    font-size: 50px;
+}
+
+.prog-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.prog-hr {
+    height: 3px;
+    width: 30%;
+    margin-left: -3px;
+    background-color: #3b3535;
+}
+
+li {
+    list-style: none;
+}
+
+ol, ul {
+   /* padding-left: 0 !important; */
+}
+
+.alignMe .custom-colon {
+    display: inline-block;
+    width: 50%;
+    position: relative;
+    padding-right: 5px; /* Ensures colon does not overlay the text */
+}
+
+.alignMe .custom-colon::after {
+    content: ":";
+    position: absolute;
+    right: 5px;
+}
+
+.captcha {
+    width: 150px;
+    color: #fff;
+    padding: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .main-div {
+        padding: 1rem;
+    }
+    .mark {
+        background-color: #bcf4bc !important;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 6px 15px 6px 15px;
+    }
+    .mark:hover {
+        background-color: #c8f8c8 !important;;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 6px 15px 6px 15px;
+    }
+}

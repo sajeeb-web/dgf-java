@@ -1,0 +1,11 @@
+Bundle-Name: dgfood-food-grain-license-service-api
+Bundle-SymbolicName: bd.gov.dgfood.food.grain.license.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	bd.gov.dgfood.food.grain.license.exception,\
+	bd.gov.dgfood.food.grain.license.model,\
+	bd.gov.dgfood.food.grain.license.service,\
+	bd.gov.dgfood.food.grain.license.service.persistence,\
+	bd.gov.dgfood.food.grain.license.service.util
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../dgfood-food-grain-license-service-service/service.xml

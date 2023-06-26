@@ -1,0 +1,43 @@
+.dgfood-food-grain-license-user-creation {
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .green-text {
+    color: #5bb600;
+  }
+  .green-bg {
+    background-color: #5bb600 !important;
+    color: #fff;
+  }
+  .green-bg:hover {
+    background-color: #5bb600 !important;
+    color: #fff;
+  }
+
+.card-width{
+width: 70%;
+margin: 0 auto;
+}
+  .input-container {
+display: flex;
+width: 100%;
+margin-bottom: 15px;
+}
+.custome-border{
+border-left:1px solid rgb(14, 13, 13);
+border-bottom: 1px solid black;
+border-top: 1px solid black;
+}
+@media screen and (max-width: 600px) {
+.card-width{
+width: 100%;
+margin: 0 auto;
+}
+* {
+  font-size: 12px;
+
+}
+}

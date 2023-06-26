@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<license>
+	<account-name>Liferay Trial</account-name>
+	<owner>Liferay Trial</owner>
+	<description>Liferay Trial</description>
+	<product-name>Digital Enterprise Development</product-name>
+	<product-version>7.4</product-version>
+	<license-name>Digital Enterprise Development</license-name>
+	<license-type>developer</license-type>
+	<license-version>6</license-version>
+	<start-date>Monday, June 19, 2023 12:00:00 AM GMT</start-date>
+	<expiration-date>Wednesday, July 19, 2023 12:00:00 AM GMT</expiration-date>
+	<max-http-sessions>5</max-http-sessions>
+	<key>c81899d3171779128144e3acc77f2a308f6672a26f17bb788a5c3200fd2e9b6038e9d1cf03664b33261b6af929ec8fdc68b5edcf8b70e5c023e432c36f9b4c01986b67a3cb08b4d3e5667ea8a5cfaf6b6f61b30eec12e4ecad479827d7bbc8384c41cc0353b642cdf962a0a791850356788e06cc95985836addd9274578e4e02f0e98f8d</key>
+</license>

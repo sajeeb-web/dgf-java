@@ -1,0 +1,6 @@
+Bundle-Name: custom-notification
+Bundle-SymbolicName: custom.notification
+Bundle-Version: 1.0.0
+Fragment-Host: com.liferay.notifications.web;bundle-version="5.0.39"
+Portal-Bundle-Version: 7.4.13
+Import-Package: !com.liferay.notifications.web.internal.*,*

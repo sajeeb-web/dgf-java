@@ -1,0 +1,5 @@
+Bundle-Name: dgfood-food-grain-license-workflow-notification-display-data
+Bundle-SymbolicName: dgfood.food.grain.license.workflow.notification.display.data
+Bundle-Version: 1.0.0
+Fragment-Host: com.liferay.portal.workflow.task.web;bundle-version="5.0.53"
+Portal-Bundle-Version: 7.4.13

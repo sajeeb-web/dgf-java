@@ -1,0 +1,53 @@
+.dgfood-food-grain-license-payment-web {
+}
+.alignMe {
+  padding-left: 0 !important;
+}
+.main-div {
+  padding-right: 5rem !important;
+  padding-left: 5.5rem !important;
+}
+.bg-alert {
+  background-color: rgb(116, 106, 62) !important;
+}
+@media screen and (max-width: 738px) {
+  .main-div {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+  * {
+    font-size: 14px;
+  }
+}
+
+// track status end
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.alignMe .custom-colon {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+  padding-right: 5px; /* Ensures colon does not overlay the text */
+}
+
+.alignMe .custom-colon::after {
+  content: ":";
+  position: absolute;
+  right: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .main-div {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+}

@@ -1,0 +1,4 @@
+Bundle-Name: dgfood-dealer-withdrawal-web-list
+Bundle-SymbolicName: bd.gov.dgfood.dealer.withdrawal.web.list
+Bundle-Version: 1.0.0
+Export-Package: bd.gov.dgfood.dealer.withdrawal.web.list.constants

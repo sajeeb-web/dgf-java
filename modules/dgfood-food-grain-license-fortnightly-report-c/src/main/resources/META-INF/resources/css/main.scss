@@ -1,0 +1,95 @@
+.dgfood-food-grain-license-fortnightly-report-c {
+}
+.borderall {
+  border-right: 12px !important;
+  border-left: 12px !important;
+}
+
+/* Flaired edges, by Tomas Theunissen */
+hr.horozentalrole {
+  height: 3px;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px 0 0 0;
+  border-radius: 2px;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  border: 1px solid #e4e4e4;
+  padding: 4px 8px;
+}
+
+select {
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  color: #6d6d6d;
+  font-weight: bold !important;
+  padding: 4px 9px;
+}
+
+.form-group label {
+  display: none;
+}
+
+.display-unit {
+  display: flex;
+}
+
+.ui-message {
+  font-size: 0.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+select.form-control {
+  font-weight: 400 !important;
+}
+.display-unit {
+  display: flex;
+}
+.table-bordered thead th,
+.table-bordered thead td {
+  border-bottom-width: calc(2 * 0rem);
+}
+
+.main-div {
+  padding: 2rem 5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .move-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  * {
+    font-size: 11px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.green-bg {
+  background-color: #5bb600 !important;
+  color: #fff !important;
+}
+.green-bg:hover {
+  background-color: #356209 !important;
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .move-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  * {
+    font-size: 11px;
+  }
+}

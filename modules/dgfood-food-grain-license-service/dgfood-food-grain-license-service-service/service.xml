@@ -1,0 +1,1427 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="ds"
+	package-path="bd.gov.dgfood.food.grain.license">
+	<namespace>DGF</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" 
+		remote-service="false" session-factory="sampleSessionFactory" table="foo" 
+		tx-manager="sampleTransactionManager uuid="true""> -->
+	<entity local-service="true" name="licnsUserRegs"
+		remote-service="true" table="dgf_licns_user_regs">
+
+		<!-- PK fields -->
+
+		<column name="licUserId" primary="true" type="long" />
+		<column name="nationalId" type="String" />
+		<column name="applicantName" type="String" />
+		<column name="tradeLicenseNo" type="String" />
+		<column name="tradeLicenseExpiryDate" type="Date" />
+		<column name="tradeLicenseIssuerCode" type="String" />
+		<column name="tradeLicenseIssuerCity" type="String" />
+		<column name="businessIdentificationNo" type="String" />
+		<column name="taxIdentificationNo" type="String" />
+		<column name="businessName" type="String" />
+		<column name="businessType" type="String" />
+		<column name="businessDivision" type="long" />
+		<column name="businessDistrict" type="long" />
+		<column name="businessUpzilla" type="long" />
+		<column name="businessUnionName" type="long" />
+		<column name="businessVillage" type="String" />
+		<column name="businessWard" type="String" />
+		<column name="businessZipCode" type="String" />
+		<column name="businessPostOffice" type="String" />
+		<column name="businessHouseAddress" type="String" />
+
+		<column name="photographFile" type="String" />
+		<column name="tradeLicDoc" type="String" />
+		<column name="binDoc" type="String" />
+		<column name="tinDoc" type="String" />
+		<column name="bankStat" type="String" />
+		<column name="otherReleventDoc" type="String" />
+		
+		<column name="comments" type="String" />
+
+		<column name="foodGrainLicenseType" type="String" />
+
+
+
+
+		<column name="division" type="long" />
+		<column name="district" type="long" />
+		<column name="upzilla" type="long" />
+		<column name="unionName" type="long" />
+		<column name="village" type="String" />
+		<column name="ward" type="String" />
+		<column name="zipCode" type="String" />
+		<column name="postOffice" type="String" />
+		<column name="houseAddress" type="String" />
+
+
+
+
+		<column name="password" type="String" />
+		<!-- <column name="applicantName" type="String" /> -->
+		<column name="fatherName" type="String" />
+		<column name="lastName" type="String" />
+		<column name="motherName" type="String" />
+		<column name="gender" type="String" />
+		<column name="maritalStatus" type="String" />
+		<column name="birthDate" type="Date" />
+		<column name="mobileNo" type="String" />
+		<column name="userId" type="long" />
+
+
+		<column name="email" type="String" />
+
+		<column name="nidDivision" type="String" />
+		<column name="nidDistrict" type="String" />
+		<column name="nidUpzilla" type="String" />
+		<column name="nidUnion" type="String" />
+		<column name="nidVillage" type="String" />
+		<column name="nidWard" type="String" />
+		<column name="nidZipCode" type="String" />
+		<column name="nidPostOffice" type="String" />
+		<column name="nidHouseAddress" type="String" />
+		<column name="isSubmit" type="boolean" />
+		
+		<column name="electricExemptionMemo" type="String" />
+		<column name="envClrMemo" type="String" />
+		<column name="bstiClrMemo" type="String" />
+		<column name="fireLicNumDoc" type="String" />
+		<column name="productType" type="String" />
+
+		<finder name="licnsUserRegsNid" return-type="licnsUserRegs"
+			unique="true">
+			<finder-column name="nationalId" />
+		</finder>
+
+	</entity>
+
+	<entity name="dgfLocDivision" local-service="true"
+		remote-service="true" table="dgf_loc_division">
+
+		<column name="id" type="long" primary="true"></column>
+		<column name="name" type="String"></column>
+		<column name="bnName" type="String"></column>
+		<column name="url" type="String"></column>
+		<column name="status" type="String"></column>
+		<column name="createdAt" type="Date"></column>
+		<column name="updatedAt" type="Date"></column>
+		<column name="geoCode" type="long"></column>
+
+	</entity>
+
+
+
+	<entity name="dgfLocDistrict" local-service="true"
+		remote-service="true" table="dgf_loc_district">
+
+		<column name="id" type="long" primary="true"></column>
+		<column name="divisionId" type="long"></column>
+		<column name="name" type="String"></column>
+		<column name="bnName" type="String"></column>
+		<column name="lat" type="String"></column>
+		<column name="lon" type="String"></column>
+		<column name="url" type="String"></column>
+		<column name="status" type="String"></column>
+		<column name="createdAt" type="Date"></column>
+		<column name="updatedAt" type="Date"></column>
+		<column name="geoCode" type="long"></column>
+
+		<finder name="divWiseDisFinder" return-type="Collection">
+			<finder-column name="divisionId" />
+		</finder>
+
+		<reference entity="dgfLocDivision"
+			package-path="bd.gov.dgfood.food.grain.license"></reference>
+
+	</entity>
+
+	<entity name="dgfLocSubdistrict" local-service="true"
+		remote-service="true" table="dgf_loc_subdistrict">
+
+		<column name="id" type="long" primary="true"></column>
+		<column name="districtId" type="long"></column>
+		<column name="name" type="String"></column>
+		<column name="bnName" type="String"></column>
+		<column name="url" type="String"></column>
+		<column name="status" type="String"></column>
+		<column name="createdAt" type="Date"></column>
+		<column name="updatedAt" type="Date"></column>
+		<column name="geoCode" type="long"></column>
+		<column name="roleName" type="String"></column>
+
+		<finder name="disWiseSubDisFinder" return-type="Collection">
+			<finder-column name="districtId" />
+		</finder>
+
+		<reference entity="dgfLocDistrict"
+			package-path="bd.gov.dgfood.food.grain.license"></reference>
+
+	</entity>
+
+
+	<entity name="dgfLocUnion" local-service="true"
+		remote-service="true" table="dgf_loc_union">
+
+		<column name="id" type="long" primary="true"></column>
+		<column name="subdistrictId" type="long"></column>
+		<column name="name" type="String"></column>
+		<column name="bnName" type="String"></column>
+		<column name="url" type="String"></column>
+		<column name="status" type="String"></column>
+		<column name="createdAt" type="Date"></column>
+		<column name="updatedAt" type="Date"></column>
+		<column name="geoCode" type="long"></column>
+
+		<finder name="subDisWiseUnFinder" return-type="Collection">
+			<finder-column name="subdistrictId" />
+		</finder>
+
+		<reference entity="dgfLocUnion"
+			package-path="bd.gov.dgfood.food.grain.license"></reference>
+
+	</entity>
+	
+	
+	<entity name="DgfStoreDtls" local-service="true"
+		remote-service="true" table="dgf_store_dtls">
+
+		<column name="id" type="long" primary="true" db-name="id"></column>
+		<column name="nationalId" type="String" db-name="national_id" />
+		<column name="type" type="String" db-name="type"></column>
+		<column name="mouza" type="String" db-name="mouza"></column>
+		<column name="khatiyn" type="String" db-name="khatiyn"></column>
+		<column name="DagNo" type="String" db-name="dag_no"></column>
+		<column name="division" type="long" db-name="division"></column>
+		<column name="district" type="long" db-name="district"></column>
+		<column name="upzilla" type="long" db-name="upzilla"></column>
+		<column name="unionName" type="long" db-name="union_name"></column>
+		<column name="cityCrprtn" type="long" db-name="city_corporatn"></column>
+		<column name="dicsHight" type="String" db-name="dics_hight"></column>
+		<column name="dicsWidth" type="String" db-name="dics_width"></column>
+		<column name="dicsLngth" type="String" db-name="dics_lngth"></column>
+		<column name="dicsCpacty" type="long" db-name="dics_cpacty"></column>
+		<column name="totalCpacty" type="long" db-name="total_cpacty"></column>
+		<column name="createdAt" type="Date" db-name="created_at"></column>
+		<column name="updatedAt" type="Date" db-name="updated_at"></column>
+		<column name="flag" type="int" db-name="flag"></column>
+
+		<finder name="DgfStoreDtlsFindByType"
+			return-type="DgfStoreDtls">
+			<finder-column name="type" />
+		</finder>
+	
+		<finder name="DgfStoreDtlsFindByNid"
+			return-type="DgfStoreDtls">
+			<finder-column name="nationalId" />
+		</finder>
+		
+		<finder name="DgfStoreDtlsListFindByType" return-type="Collection">
+			<finder-column name="type" />
+		</finder>
+	
+		<finder name="DgfStoreDtlsListFindByNid"
+			return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+		
+		
+	</entity>
+
+
+	<!-- ===== DGF APPLICATION STORE DETAILS END===== -->
+	
+	
+
+	<entity name="DealerMasters" local-service="true"
+		remote-service="true" table="dgf_dealer_masters">
+
+		<!-- PK fields -->
+
+		<column name="id" primary="true" type="long" db-name="id" />
+
+		<!-- First table -->
+
+		<column name="unionId" type="long" db-name="union_id" />
+		<column name="dealerName" type="String" db-name="dealer_name" />
+		<column name="dealerNameEn" type="String"
+			db-name="dealer_name_en" />
+		<column name="dealerSlug" type="String" db-name="dealer_slug" />
+		<column name="fatherName" type="String" db-name="father_name" />
+		<column name="motherName" type="String" db-name="mother_name" />
+		<column name="birthDate" type="Date" db-name="birth_date" />
+		<column name="gender" type="String" db-name="gender" />
+		<column name="imagePathReal" type="String"
+			db-name="image_path_real" />
+		<column name="imagePathEc" type="String"
+			db-name="image_path_ec" />
+		<column name="ecPmDivision" type="String"
+			db-name="ec_pm_division" />
+		<column name="ecPmDistrict" type="String"
+			db-name="ec_pm_district" />
+		<column name="ecPmRmo" type="String" db-name="ec_pm_rmo" />
+		<column name="ecPmUpazila" type="String"
+			db-name="ec_pm_upazila" />
+		<column name="ecPmUnionWard" type="String"
+			db-name="ec_pm_union_ward" />
+		<column name="ecPmWardUnionPorishod" type="String"
+			db-name="ec_pm_ward_union_porishod" />
+		<column name="ecPmPostOffice" type="String"
+			db-name="ec_pm_post_office" />
+		<column name="ecPmPostalCode" type="String"
+			db-name="ec_pm_postal_code" />
+		<column name="ecPmMouzaMoholla" type="String"
+			db-name="ec_pm_mouza_moholla" />
+		<column name="ecPmAdditionalMouzaMoholla" type="String"
+			db-name="ec_pm_additional_mouza_moholla" />
+		<column name="ecPmVillageRoad" type="String"
+			db-name="ec_pm_village_road" />
+		<column name="ecPmAdditionalVillageRoad" type="String"
+			db-name="ec_pm_additional_village_road" />
+		<column name="ecPmHomeHoldingNo" type="String"
+			db-name="ec_pm_home_holding_no" />
+		<column name="ecPmRegion" type="String" db-name="ec_pm_region" />
+		<column name="ecPrDivision" type="String"
+			db-name="ec_pr_division" />
+		<column name="ecPrDistrict" type="String"
+			db-name="ec_pr_district" />
+		<column name="ecPrRmo" type="String" db-name="ec_pr_rmo" />
+		<column name="ecPrUpazila" type="String"
+			db-name="ec_pr_upazila" />
+		<column name="ecPrCityCorpMunicipality" type="String"
+			db-name="ec_pr_city_corp_municipality" />
+		<column name="ecPrUnionWard" type="String"
+			db-name="ec_pr_union_ward" />
+		<column name="ecPrPostOffice" type="String"
+			db-name="ec_pr_post_office" />
+		<column name="ecPrPostalCode" type="String"
+			db-name="ec_pr_postal_code" />
+		<column name="ecPrWardUnionPorishod" type="String"
+			db-name="ec_pr_ward_union_porishod" />
+		<column name="ecPrMouzaMoholla" type="String"
+			db-name="ec_pr_mouza_moholla" />
+		<column name="ecPrAdditionalMouzaMoholla" type="String"
+			db-name="ec_pr_additional_mouza_moholla" />
+		<column name="ecPrVillageRoad" type="String"
+			db-name="ec_pr_village_road" />
+		<column name="ecPrAdditionalVillageRoad" type="String"
+			db-name="ec_pr_additional_village_road" />
+		<column name="ecPrHomeHoldingNo" type="String"
+			db-name="ec_pr_home_holding_no" />
+		<column name="ecPrRegion" type="String" db-name="ec_pr_region" />
+		<column name="ecOccupation" type="String"
+			db-name="ec_occupation" />
+		<column name="ecBloodGroup" type="String"
+			db-name="ec_blood_group" />
+		<column name="age" type="long" db-name="age" />
+		<column name="pmDivisionId" type="long"
+			db-name="pm_division_id" />
+		<column name="pmDistrictId" type="long"
+			db-name="pm_district_id" />
+		<column name="pmUpazilaId" type="long" db-name="pm_upazila_id" />
+		<column name="pmUnionId" type="long" db-name="pm_union_id" />
+		<column name="pmPostOffice" type="String"
+			db-name="pm_post_office" />
+		<column name="pmWordNo" type="String" db-name="pm_word_no" />
+		<column name="pmVillage" type="String" db-name="pm_village" />
+		<column name="pmHoldingInfo" type="String"
+			db-name="pm_holding_info" />
+		<column name="prDivisionId" type="long"
+			db-name="pr_division_id" />
+		<column name="prDistrictId" type="long"
+			db-name="pr_district_id" />
+		<column name="prUpazilaId" type="long" db-name="pr_upazila_id" />
+		<column name="prUnionId" type="long" db-name="pr_union_id" />
+		<column name="prPostOffice" type="String"
+			db-name="pr_post_office" />
+		<column name="prWordNo" type="String" db-name="pr_word_no" />
+		<column name="prVillage" type="String" db-name="pr_village" />
+		<column name="prHoldingInfo" type="String"
+			db-name="pr_holding_info" />
+		<column name="dealerMobileNo" type="String"
+			db-name="dealer_mobile_no" />
+		<column name="dealerNationalId" type="String"
+			db-name="dealer_national_id" />
+		<column name="secondNationalId" type="String"
+			db-name="second_national_id" />
+		<column name="spouseName" type="String" db-name="spouse_name" />
+		<column name="spouseFatherName" type="String"
+			db-name="spouse_father_name" />
+		<column name="spouseBirthDate" type="Date"
+			db-name="spouse_birth_date" />
+		<column name="spouseNid" type="String" db-name="spouse_nid" />
+		<column name="spouseSecondNid" type="String"
+			db-name="spouse_second_nid" />
+		<column name="govtEmployee" type="String"
+			db-name="govt_employee" />
+		<column name="handicap" type="String" db-name="handicap" />
+		<column name="publicRepresentative" type="String"
+			db-name="public_representative" />
+		<column name="vgdStatus" type="String" db-name="vgd_status" />
+		<column name="cardNoFromOne" type="long"
+			db-name="card_no_from_one" />
+		<column name="cardNoToOne" type="long" db-name="card_no_to_one" />
+		<column name="cardNoFromTwo" type="long"
+			db-name="card_no_from_two" />
+		<column name="cardNoToTwo" type="long" db-name="card_no_to_two" />
+		<column name="cardNoFromThree" type="long"
+			db-name="card_no_from_three" />
+		<column name="cardNoToThree" type="long"
+			db-name="card_no_to_three" />
+		<column name="status" type="String" db-name="status" />
+		<column name="createdAt" type="Date" db-name="created_at" />
+		<column name="updatedAt" type="Date" db-name="updated_at" />
+		<column name="cardNoFromFour" type="long"
+			db-name="card_no_from_four" />
+		<column name="cardNoToFour" type="long"
+			db-name="card_no_to_four" />
+		<column name="cardNoFromFive" type="long"
+			db-name="card_no_from_five" />
+		<column name="cardNoToFive" type="long"
+			db-name="card_no_to_five" />
+		<!-- -singleCards define the CLOB data type -->
+		<column name="singleCards" type="String" db-name="single_cards" />
+		<column name="userId" type="long" db-name="user_id" />
+		<column name="additionalUnionId" type="long"
+			db-name="additional_union_id" />
+		<column name="upazilaId" type="long" db-name="upazila_id" />
+		<column name="remarks" type="String" db-name="remarks" />
+
+		<finder name="DealerMastersById" return-type="DealerMasters">
+			<finder-column name="id" />
+		</finder>
+		<finder name="dealerMastersNidFinder" return-type="Collection">
+			<finder-column name="dealerNationalId" />
+		</finder>
+		<finder name="dealerMastersByNidAndMobile"
+			return-type="DealerMasters">
+			<finder-column name="dealerNationalId" />
+			<finder-column name="dealerMobileNo" />
+		</finder>
+
+		<finder name="DealerMastersBySecondNidAndMobile"
+			return-type="DealerMasters">
+			<finder-column name="secondNationalId" />
+			<finder-column name="dealerMobileNo" />
+		</finder>
+
+		<finder name="DealerMastersByMobileNo"
+			return-type="DealerMasters">
+			<finder-column name="dealerMobileNo" />
+		</finder>
+
+	</entity>
+
+	<entity name="VerifiedBeneficiaries" local-service="true"
+		remote-service="true" table="dgf_verified_beneficiaries">
+
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" db-name="id" />
+
+		<column name="bsbVerified" type="int" db-name="bsb_verified" />
+		<column name="cardNo" type="long" db-name="card_no" />
+		<column name="createdAt" type="Date" db-name="created_at" />
+		<column name="dateOfBirth" type="String"
+			db-name="date_of_birth" />
+		<column name="dealerId" type="long" db-name="dealer_id" />
+		<column name="districtId" type="long" db-name="district_id" />
+		<column name="divisionId" type="long" db-name="division_id" />
+		<column name="ecBeneficiaryName" type="String"
+			db-name="ec_beneficiary_name" />
+		<column name="ecBeneficiaryNameEn" type="String"
+			db-name="ec_beneficiary_name_en" />
+		<column name="ecBloodGroup" type="String"
+			db-name="ec_blood_group" />
+		<column name="ecFatherName" type="String"
+			db-name="ec_father_name" />
+		<column name="ecGender" type="String" db-name="ec_gender" />
+		<column name="ecMobileNo" type="String" db-name="ec_mobile_no" />
+		<column name="ecMotherName" type="String"
+			db-name="ec_mother_name" />
+		<column name="ecOccupation" type="String"
+			db-name="ec_occupation" />
+		<column name="ecPmAdditionalMouzaMoholla" type="String"
+			db-name="ec_pm_additional_mouza_moholla" />
+		<column name="ecPmAdditionalVillageRoad" type="String"
+			db-name="ec_pm_additional_village_road" />
+		<column name="ecPmDistrict" type="String"
+			db-name="ec_pm_district" />
+		<column name="ecPmDivision" type="String"
+			db-name="ec_pm_division" />
+		<column name="ecPmHomeHoldingNo" type="String"
+			db-name="ec_pm_home_holding_no" />
+		<column name="ecPmMouzaMoholla" type="String"
+			db-name="ec_pm_mouza_moholla" />
+		<column name="ecPmPostalCode" type="String"
+			db-name="ec_pm_postal_code" />
+		<column name="ecPmPostOffice" type="String"
+			db-name="ec_pm_post_office" />
+		<column name="ecPmRegion" type="String" db-name="ec_pm_region" />
+		<column name="ecPmRmo" type="String" db-name="ec_pm_rmo" />
+		<column name="ecPmUnionWard" type="String"
+			db-name="ec_pm_union_ward" />
+		<column name="ecPmUpazila" type="String"
+			db-name="ec_pm_upazila" />
+		<column name="ecPmVillageRoad" type="String"
+			db-name="ec_pm_village_road" />
+		<column name="ecPmWardUnionPorishod" type="String"
+			db-name="ec_pm_ward_union_porishod" />
+		<column name="ecPrAdditionalMouzaMoholla" type="String"
+			db-name="ec_pr_additional_mouza_moholla" />
+		<column name="ecPrAdditionalVillageRoad" type="String"
+			db-name="ec_pr_additional_village_road" />
+		<column name="ecPrCityCorpMunicipality" type="String"
+			db-name="ec_pr_city_corp_municipality" />
+		<column name="ecPrDistrict" type="String"
+			db-name="ec_pr_district" />
+		<column name="ecPrDivision" type="String"
+			db-name="ec_pr_division" />
+		<column name="ecPrHomeHoldingNo" type="String"
+			db-name="ec_pr_home_holding_no" />
+		<column name="ecPrMouzaMoholla" type="String"
+			db-name="ec_pr_mouza_moholla" />
+		<column name="ecPrPostalCode" type="String"
+			db-name="ec_pr_postal_code" />
+		<column name="ecPrPostOffice" type="String"
+			db-name="ec_pr_post_office" />
+		<column name="ecPrRegion" type="String" db-name="ec_pr_region" />
+		<column name="ecPrRmo" type="String" db-name="ec_pr_rmo" />
+		<column name="ecPrUnionWard" type="String"
+			db-name="ec_pr_union_ward" />
+		<column name="ecPrUpazila" type="String"
+			db-name="ec_pr_upazila" />
+		<column name="ecPrVillageRoad" type="String"
+			db-name="ec_pr_village_road" />
+		<column name="ecPrWardUnionPorishod" type="String"
+			db-name="ec_pr_ward_union_porishod" />
+		<column name="ecSpouseName" type="String"
+			db-name="ec_spouse_name" />
+		<column name="ecVerified" type="int" db-name="ec_verified" />
+		<column name="finalStatus" type="long" db-name="final_status" />
+		<column name="givenMobileNo" type="String"
+			db-name="given_mobile_no" />
+		<column name="imagePathEc" type="String"
+			db-name="image_path_ec" />
+		<column name="imagePathReal" type="String"
+			db-name="image_path_real" />
+		<column name="nationalId" type="String" db-name="national_id" />
+		<column name="newCardNumber" type="long"
+			db-name="new_card_number" />
+		<column name="rawDataId" type="long" db-name="raw_data_id" />
+		<column name="remarks" type="String" db-name="remarks" />
+		<column name="secondNationalId" type="String"
+			db-name="second_national_id" />
+		<column name="status" type="long" db-name="status" />
+		<column name="ucfVerifiedDate" type="Date"
+			db-name="ucf_verified_date" />
+		<column name="unionId" type="long" db-name="union_id" />
+		<column name="upazilaId" type="long" db-name="upazila_id" />
+		<column name="updatedAt" type="Date" db-name="updated_at" />
+		<column name="verifiedBy" type="long" db-name="verified_by" />
+		<column name="verifiedDate" type="Date" db-name="verified_date" />
+		<column name="vgdStatus" type="int" db-name="vgd_status" />
+
+		<finder name="VerifiedBeneficiariesById"
+			return-type="VerifiedBeneficiaries">
+			<finder-column name="id" />
+		</finder>
+		<finder name="verifiedBeneficiariesDealerIdFinder"
+			return-type="Collection">
+			<finder-column name="dealerId" />
+		</finder>
+		<finder name="verifiedBeneficiariesNidFinder"
+			return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+	</entity>
+
+	<!-- Beneficiary_Other Table -->
+	<entity name="BeneficiaryOtherInfo" local-service="true"
+		remote-service="true" table="dgf_beneficiary_other_info">
+		<column name="id" type="long" primary="true" db-name="id" />
+		<column name="verifiedId" type="long" db-name="verified_id" />
+		<column name="maritalStatus" type="String"
+			db-name="marital_status" />
+		<column name="spouseName" type="String" db-name="spouse_name" />
+		<column name="spouseNid" type="String" db-name="spouse_nid" />
+		<column name="spouseSecondNid" type="String"
+			db-name="spouse_second_nid" />
+		<column name="spouseDob" type="Date" db-name="spouse_dob" />
+		<column name="fatherNid" type="String" db-name="father_nid" />
+		<column name="motherNid" type="String" db-name="mother_nid" />
+		<column name="mobileNo" type="String" db-name="mobile_no" />
+		<column name="mobileNoRelation" type="String"
+			db-name="mobile_no_relation" />
+		<column name="ecSpouseInfo" type="String"
+			db-name="ec_spouse_info" />
+		<column name="occupation" type="String" db-name="occupation" />
+		<column name="villageName" type="String" db-name="village_name" />
+		<column name="wordNo" type="String" db-name="word_no" />
+		<column name="dealerName" type="String" db-name="dealer_name" />
+		<column name="dealerMobile" type="String"
+			db-name="dealer_mobile" />
+		<column name="mobileVerifiedAt" type="Date"
+			db-name="mobile_verified_at" />
+		<column name="familyEarningMember" type="long"
+			db-name="family_earning_member" />
+		<column name="avgFamilyIncome" type="long"
+			db-name="avg_family_income" />
+		<column name="dependentFamilyMember" type="long"
+			db-name="dependent_family_member" />
+		<column name="landSize" type="long" db-name="land_size" />
+		<column name="landUnit" type="String" db-name="land_unit" />
+		<column name="remarks" type="String" db-name="remarks" />
+		<column name="userId" type="long" db-name="user_id" />
+		<column name="createdAt" type="Date" db-name="created_at" />
+		<column name="updatedAt" type="Date" db-name="updated_at" />
+		<column name="dealerSlug" type="String" db-name="dealer_slug" />
+		<column name="dealerId" type="long" db-name="dealer_id" />
+
+		<finder name="beneficiaryOtherInfoById"
+			return-type="BeneficiaryOtherInfo">
+			<finder-column name="id" />
+		</finder>
+
+		<finder name="beneficiaryOtherInfoByVerifiedId"
+			return-type="BeneficiaryOtherInfo">
+			<finder-column name="verifiedId" />
+		</finder>
+		<finder name="beneficiaryOtherInfoByMobileNo"
+			return-type="BeneficiaryOtherInfo">
+			<finder-column name="mobileNo" />
+		</finder>
+	</entity>
+
+	<!-- DGF.DGF_Users Table LLD -page No- 13 -->
+
+	<entity name="DgfUsers" local-service="true"
+		remote-service="true" table="dgf_users">
+
+		<column name="userId" type="long" primary="true"></column>
+		<column name="nationalId" type="String"></column>
+		<column name="password" type="String"></column>
+		<column name="applicantName" type="String"></column>
+		<column name="fatherName" type="String"></column>
+		<column name="lastName" type="String"></column>
+		<column name="motherName" type="String"></column>
+		<column name="gender" type="String"></column>
+		<column name="maritalStatus" type="String"></column>
+		<column name="birthDate" type="Date"></column>
+		<column name="mobileNo" type="String"></column>
+		<column name="presentAddrId" type="long"></column>
+		<column name="applcProfile" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+		<finder name="mobileNumberFinder" return-type="Collection">
+			<finder-column name="mobileNo" />
+		</finder>
+		<finder name="nationalIdfinder" return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+		<finder name="userIdFinder" return-type="DgfUsers">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="DgfUsersByNationalId" return-type="DgfUsers"
+			unique="true">
+			<finder-column name="nationalId" />
+		</finder>
+
+		<reference entity="DgfUsersOtpDetails"
+			package-path="bd.gov.dgfood.food.grain.license"></reference>
+
+	</entity>
+
+	<!-- dgf user otp tabel -->
+
+	<entity name="DgfUsersOtpDetails" local-service="true"
+		remote-service="true" table="dgf_user_otp_dtls">
+		<column name="otpId" type="long" primary="true"></column>
+		<column name="nationalId" type="String"></column>
+		<column name="otp" type="long"></column>
+		<column name="otpRequestTime" type="Date"></column>
+		<column name="otpLoginTime" type="Date"></column>
+		<column name="otpExpireTime" type="Date"></column>
+		<column name="userId" type="long"></column>
+		<column name="userRegNo" type="long"></column>
+		<column name="mobileNo" type="String"></column>
+		<column name="emailId" type="String"></column>
+		<column name="otpVerify" type="String"></column>
+		<column name="isSent" type="boolean"></column>
+		
+		<column name="message" type="String"></column>
+		<column name="requestUrl" type="String"></column>
+		<column name="responseData" type="String"></column>
+		<column name="responseStatusCode" type="int"></column>
+		<column name="responseResult" type="String"></column>
+
+		<finder name="mobileNumberFinder" return-type="Collection">
+			<finder-column name="mobileNo" />
+		</finder>
+		<finder name="nationalIdfinder" return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+		<finder name="userIdFinder" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="isSent" return-type="Collection">
+			<finder-column name="isSent" />
+		</finder>
+
+		<finder return-type="DgfUsersOtpDetails"
+			name="otpDetailsByMobileAndOtp">
+			<finder-column name="mobileNo"></finder-column>
+			<finder-column name="otp"></finder-column>
+			<finder-column name="isSent"></finder-column>
+		</finder>
+
+		<reference entity="DgfUsers"
+			package-path="bd.gov.dgfood.food.grain.license"></reference>
+
+	</entity>
+
+	<!-- dgf renew license tabel -->
+
+	<entity name="DgfRenewLicense" local-service="true"
+		table="dgf_renew_license">
+		<!-- pk -->
+		<column name="renewLicenseId" type="long" primary="true"></column>
+
+		<!-- other fields -->
+		<column name="userId" type="long"></column>
+		<column name="nationalId" type="String"></column>
+		<column name="licenseNo" type="String"></column>
+		<column name="licenseExpiryDate" type="Date"></column>
+		<column name="tradeLicenseNo" type="String"></column>
+		<column name="tradeLicenseExpiryDate" type="Date"></column>
+		<column name="tradeLicAttchId" type="long"></column>
+		<column name="paymentAttchId" type="long"></column>
+		<column name="applicationNo" type="String"></column>
+		<column name="licenseApplicationType" type="String"></column>
+		<column name="comments" type="String"></column>
+		<column name="createdDate" type="Date" />
+		<column name="modifiedBy" type="long" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- foreign Key field -->
+		<column name="fglPrePrimaryId" type="long" />
+
+		<!-- workflow fields -->
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+		<finder name="renewLicUserIdFinder"
+			return-type="DgfRenewLicense">
+			<finder-column name="userId" />
+
+		</finder>
+		<finder name="renewLicNationalIdFinder"
+			return-type="DgfRenewLicense">
+			<finder-column name="nationalId" />
+
+		</finder>
+		
+		<finder name="renewLicNationalIdAndLicenseFinder"
+			return-type="Collection">
+			<finder-column name="nationalId" />
+			<finder-column name="licenseNo" />
+		</finder>
+		
+		<finder name="renewLicTradeLicAttchIdFinder"
+			return-type="DgfRenewLicense">
+			<finder-column name="tradeLicAttchId" />
+
+		</finder>
+		<finder name="renewLicPaymentAttchIdFinder"
+			return-type="DgfRenewLicense">
+			<finder-column name="paymentAttchId" />
+
+		</finder>
+
+		<finder name="renewLicFglPrePrimaryIdFinder"
+			return-type="Collection">
+			<finder-column name="fglPrePrimaryId" />
+
+		</finder>
+
+		<finder name="renewLicApplicationNoFinder"
+			return-type="DgfRenewLicense">
+			<finder-column name="applicationNo" />
+
+		</finder>
+
+		<reference entity="DgfFglLicDtls"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+	</entity>
+
+
+	<!-- DGF.DGF_Users Table LLD -page No- 13 End -->
+
+	<!-- /////////////// Foodgrain license 7th table - Emon ///////////////// -->
+
+	<entity local-service="true" name="DgfFglLicDtls"
+		remote-service="true" table="dgf_fgl_lic_dtls">
+		<!-- pk -->
+		<column name="fglLicPrimaryId" primary="true" type="long" />
+
+		<!-- DGF_FGL_LIC_DTLS table -->
+		<column name="nationalId" type="String" />
+		<column name="fglPrePrimaryId" type="long" />
+		<column name="fglApplicationNo" type="String" />
+		<column name="foodgrainLicenseNo" type="String" />
+		<column name="foodgrainLicenseType" type="String" />
+		<column name="tradeLicenseNo" type="String" />
+		<column name="tradeLicenseExpiryDate" type="Date" />
+		<column name="foodgrainLicenseIssueDate" type="Date" />
+		<column name="foodgrainLicenseExpiryDate" type="Date" />
+		<column name="foodgrainLicenseIssuedBy" type="long" />
+		<column name="fglLicenseVersion" type="long" />
+		<column name="productType" type="String" />
+
+		<!-- DGF_FGL_LIC_DTLS table Finders -->
+		<finder name="dgfFglLicDtlsByFglLicPrePrimaryId"
+			return-type="DgfFglLicDtls">
+			<finder-column name="fglPrePrimaryId" />
+		</finder>
+		<finder name="dgfFglLicDtlsByNationalId"
+			return-type="DgfFglLicDtls">
+			<finder-column name="nationalId" />
+		</finder>
+		<finder name="dgfFglLicDtlsByFglApplicationNo"
+			return-type="DgfFglLicDtls">
+			<finder-column name="fglApplicationNo" />
+		</finder>
+		<finder name="dgfFglLicDtlsByFoodgrainLicenseNo"
+			return-type="DgfFglLicDtls">
+			<finder-column name="foodgrainLicenseNo" />
+		</finder>
+		<finder name="dgfFglLicDtlsByNationalIdAndFoodgrainLicenseNo"
+			return-type="DgfFglLicDtls">
+			<finder-column name="nationalId" />
+			<finder-column name="foodgrainLicenseNo" />
+		</finder>
+		<finder name="dgfFglLicDtlsListByNid"
+			return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+		<reference entity="DgfFglPreDtls"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+
+
+	</entity>
+
+	<entity local-service="true" name="DgfFglLicenseNo"
+		remote-service="true" table="dgf_fgl_license_no">
+		<!-- pk -->
+		<column name="id" primary="true" type="long" db-name="id" />
+
+		<!-- DGF_FGL_LIC table -->
+		<column name="suffix" type="long" db-name="suffix" />
+		<column name="prefix" type="long" db-name="prefix" />
+		<column name="serialNo" type="long" db-name="serial_no" />
+		<column name="licenseNo" type="String" db-name="license_no" />
+		<column name="createdAt" type="Date" db-name="created_at" />
+		<column name="updatedAt" type="Date" db-name="updated_at" />
+
+		<finder name="DgfFglLicenseNoBySerialNo"
+			return-type="DgfFglLicenseNo">
+			<finder-column name="serialNo" />
+		</finder>
+
+	</entity>
+
+	<entity local-service="true" name="DgfFglPreDtls"
+		remote-service="true" table="dgf_fgl_pre_dtls">
+		<!-- PK id -->
+		<column name="fglPrePrimaryId" primary="true" type="long" />
+
+		<!-- DGF_FGL_PRE_DTLS table -->
+		<column name="nationalId" type="long" />
+		<column name="fglApplicationNo" type="String" />
+		<column name="applicantName" type="String" />
+		<column name="tradeLicenseNo" type="String" />
+		<column name="tradeLicenseExpiryDate" type="Date" />
+		<column name="tradeLicenseIssuerCode" type="String" />
+		<column name="tradeLicenseIssuerCity" type="String" />
+		<column name="businessIdentificationNo" type="String" />
+		<column name="taxIdentificationNo" type="String" />
+		<column name="businessName" type="String" />
+		<column name="businessType" type="String" />
+		<column name="paymentChallanId" type="long" />
+		<column name="paymentStatus" type="long" />
+		<column name="reviewComments" type="String" />
+		<column name="applicationStatus" type="long" />
+		<column name="applicationStatusDate" type="Date" />
+		<column name="duplicateLicenseReasonId" type="long" />
+		<column name="comments" type="String" />
+		<column name="fglLicenseVersion" type="long" />
+		<column name="foodGrainLicenseType" type="String" />
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+		<column name="createdDate" type="Date" />
+		<column name="modifiedBy" type="long" />
+		<column name="modifiedDate" type="Date" />
+		<column name="applicationStatusById" type="long" />
+		<column name="presentAddrId" type="long" />
+		<column name="bussinessAddrId" type="long" />
+		<column name="tradeLicenseDocId" type="long" />
+		<column name="bussIdentfctDocId" type="long" />
+		<column name="taxIdentfctDocId" type="long" />
+		<column name="bnkStatmtDocId" type="long" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+		<column name="userId" type="long" />
+		<column name="birthDate" type="Date" />
+		<column name="fglApplicationType" type="String"></column>
+		<column name="photographDocId" type="long" />
+		<column name="otherReleventDocId" type="long" />
+		<column name="electricExemptionMemoId" type="long" />
+		<column name="envClrMemoId" type="long" />
+		<column name="bstiClrMemoId" type="long" />
+		<column name="fireLicNumDocId" type="long" />
+		<column name="productType" type="String" />
+
+		<finder name="dgfFglPreDtlsByFglApplicationNo"
+			return-type="DgfFglPreDtls">
+			<finder-column name="fglApplicationNo" />
+		</finder>
+		<finder name="dgfFglPreDtlsByNationalId"
+			return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+		<finder name="DgfFglPreDtlsByNID" return-type="DgfFglPreDtls">
+			<finder-column name="nationalId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByPresentAddrId"
+			return-type="Collection">
+			<finder-column name="presentAddrId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByBussinessAddrId"
+			return-type="Collection">
+			<finder-column name="bussinessAddrId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByTradeLicenseDocId"
+			return-type="Collection">
+			<finder-column name="tradeLicenseDocId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByBussIdentfctDocId"
+			return-type="Collection">
+			<finder-column name="bussIdentfctDocId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByTaxIdentfctDocId"
+			return-type="Collection">
+			<finder-column name="taxIdentfctDocId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByBnkStatmtDocId"
+			return-type="Collection">
+			<finder-column name="bnkStatmtDocId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByPaymentChallanId"
+			return-type="Collection">
+			<finder-column name="paymentChallanId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByDuplicateLicenseReasonId"
+			return-type="Collection">
+			<finder-column name="duplicateLicenseReasonId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByPhotographDocId"
+			return-type="Collection">
+			<finder-column name="photographDocId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByOtherReleventDocId"
+			return-type="Collection">
+			<finder-column name="otherReleventDocId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByElectricExemptionMemoId"
+			return-type="Collection">
+			<finder-column name="electricExemptionMemoId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByEnvClrMemoId"
+			return-type="Collection">
+			<finder-column name="envClrMemoId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByBstiClrMemoId"
+			return-type="Collection">
+			<finder-column name="bstiClrMemoId" />
+		</finder>
+		<finder name="dgfFglPreDtlsByFireLicNumDocId"
+			return-type="Collection">
+			<finder-column name="fireLicNumDocId" />
+		</finder>
+
+		<reference entity="DgfUsersAddrDtls"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+		<reference entity="DgfBussAddrDtls"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+		<reference entity="DgfDuplctLicnsReason"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+		<reference entity="DgfAttachments"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+
+	</entity>
+	<entity local-service="true" name="DgfUsersAddrDtls"
+		remote-service="true" table="dgf_users_addr_dtls">
+		<!-- pk -->
+		<column name="addressId" primary="true" type="long" />
+
+		<!-- DGF_USERS_ADDR_DTLS table -->
+		<column name="nationalId" type="long" />
+		<column name="classPk" type="long" />
+		<column name="className" type="String" />
+		<column name="addressType" type="String" />
+		<column name="division" type="long" />
+		<column name="district" type="long" />
+		<column name="upzilla" type="long" />
+		<column name="unionName" type="long" />
+		<column name="village" type="String" />
+		<column name="ward" type="String" />
+		<column name="zipCode" type="String" />
+		<column name="postOffice" type="String" />
+		<column name="houseAddress" type="String" />
+		<column name="lastUpdatedDate" type="Date" />
+		<column name="lastUpdatedBy" type="Date" />
+
+		<finder name="dgfUsersAddrDtlsByNationalId"
+			return-type="DgfUsersAddrDtls">
+			<finder-column name="nationalId" />
+		</finder>
+		<finder name="dgfUsersAddrDtlsByDistrict"
+			return-type="Collection">
+			<finder-column name="district" />
+		</finder>
+
+		<finder name="dgfUsersAddrDtlsByUpzilla"
+			return-type="Collection">
+			<finder-column name="upzilla" />
+		</finder>
+
+		<finder name="dgfUsersAddrDtlsByUnion" return-type="Collection">
+			<finder-column name="unionName" />
+		</finder>
+
+		<finder name="dgfUsersAddrDtlsByWard" return-type="Collection">
+			<finder-column name="ward" />
+		</finder>
+		<finder name="DgfUsersAddrDtlsByDivisionAndDistrictAndUpzilla"
+			return-type="Collection">
+			<finder-column name="division" />
+			<finder-column name="district" />
+			<finder-column name="upzilla" />
+		</finder>
+
+		<finder name="DgfUsersAddrDtlsByDivisionAndDistrict"
+			return-type="Collection">
+			<finder-column name="division" />
+			<finder-column name="district" />
+		</finder>
+
+
+	</entity>
+	<entity local-service="true" name="DgfBussAddrDtls"
+		remote-service="true" table="dgf_buss_addr_dtls">
+		<!-- pk -->
+		<column name="businessAddressId" primary="true" type="long" />
+
+		<!-- DGF_BUSS_ADDR_DTLS table -->
+		<column name="nationalId" type="long" />
+		<!-- <column name="businessName" type="String" /> <column name="businessType" 
+			type="String" /> -->
+		<column name="businessDivision" type="long" />
+		<column name="businessDistrict" type="long" />
+		<column name="businessUpzilla" type="long" />
+		<column name="businessUnionName" type="long" />
+		<column name="businessVillage" type="String" />
+		<column name="businessWard" type="String" />
+		<column name="businessZipCode" type="String" />
+		<column name="businessPostOffice" type="String" />
+		<column name="businessHouseAddress" type="String" />
+
+		<finder name="dgfBussAddrDtlsByBusinessDistrict"
+			return-type="Collection">
+			<finder-column name="businessDistrict" />
+		</finder>
+
+		<finder name="dgfBussAddrDtlsByBusinessUpzilla"
+			return-type="Collection">
+			<finder-column name="businessUpzilla" />
+		</finder>
+
+		<finder name="dgfBussAddrDtlsByBusinessUnionName"
+			return-type="Collection">
+			<finder-column name="businessUnionName" />
+		</finder>
+		<finder name="dgfBussAddrDtlsByBusinessWard"
+			return-type="Collection">
+			<finder-column name="businessWard" />
+		</finder>
+
+	</entity>
+	<entity local-service="true" name="DgfAttachments"
+		remote-service="true" table="dgf_attachments">
+		<!-- pk -->
+		<column name="attchmId" primary="true" type="long" />
+
+		<!-- DGF_ATTACHMENTS table -->
+		<column name="nationalId" type="long" />
+		<column name="attachmentCatagory" type="String" />
+		<column name="attachmntDate" type="Date" />
+		<column name="fileEntryId" type="long" />
+		<column name="title" type="String" />
+		<column name="filePath" type="String" />
+		<column name="version" type="long" />
+		<column name="openTextId" type="long" />
+		<column name="status" type="long" />
+		<column name="lastUpdatedDate" type="Date" />
+		<column name="lastUpdatedBy" type="long" />
+	</entity>
+
+	<entity local-service="true" name="DgfUsersDtls"
+		remote-service="true" table="dgf_users_dtls">
+		<!-- pk -->
+		<column name="userDetailsId" primary="true" type="long" />
+		<!-- DGF_USERS_DTLS table -->
+		<column name="nationalId" type="long" />
+		<column name="email" type="String" />
+		<column name="nidPhotoAttchId" type="long" />
+		<column name="nidDivision" type="String" />
+		<column name="nidDistrict" type="String" />
+		<column name="nidUpzilla" type="String" />
+		<column name="nidUnion" type="String" />
+		<column name="nidVillage" type="String" />
+		<column name="nidWard" type="String" />
+		<column name="nidZipCode" type="String" />
+		<column name="nidHouseAddress" type="String" />
+		<column name="lastUpdatedDate" type="Date" />
+		<column name="nidPostOffice" type="String" />
+
+		<finder name="dgfUsersDtlsByNationalId"
+			return-type="DgfUsersDtls">
+			<finder-column name="nationalId" />
+		</finder>
+
+	</entity>
+	<entity local-service="true" name="DgfBnkChllnDtls"
+		remote-service="true" table="dgf_bnk_chlln_dtls">
+		<!-- pk -->
+		<column name="bnkChllnId" primary="true" type="long" />
+		<!-- DGF_USERS_DTLS table -->
+
+		<column name="trnPoNo" type="long" />
+		<column name="paymentStatus" type="long" />
+		<column name="trnAmount" type="long" />
+		<column name="pymntChllnDate" type="Date" />
+		<column name="bnkChllnDocId" type="long" />
+		<column name="bnkChllnUpldBy" type="long" />
+	</entity>
+
+	<!-- DGF_DUPLCT_LICNS_REASON table -->
+	<entity local-service="true" name="DgfDuplctLicnsReason"
+		remote-service="true" table="dgf_duplct_licns_reason">
+		<!-- pk -->
+		<column name="duplicateLicenseReasonID" primary="true"
+			type="long" />
+
+		<!-- other fields -->
+		<column name="userId" type="long"></column>
+		<column name="nationalId" type="String"></column>
+		<column name="licenseNo" type="String"></column>
+		<column name="licenseExpiryDate" type="Date"></column>
+		<column name="tradeLicenseNo" type="String"></column>
+		<column name="tradeLicenseExpiryDate" type="Date"></column>
+		<column name="tradeLicAttchId" type="long"></column>
+		<column name="paymentAttchId" type="long"></column>
+		<column name="applicationNo" type="String"></column>
+		<column name="licenseApplicationType" type="String"></column>
+		<column name="duplicateLicenseReasonDisplay" type="String" />
+		<column name="comments" type="String"></column>
+		<column name="createdDate" type="Date" />
+		<column name="modifiedBy" type="long" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- foreign Key field -->
+		<column name="fglPrePrimaryId" type="long" />
+
+		<!-- workflow fields -->
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
+
+
+
+		<finder name="duplicateLicUserIdFinder"
+			return-type="DgfDuplctLicnsReason">
+			<finder-column name="userId" />
+
+		</finder>
+		<finder name="duplicateLicNationalIdFinder"
+			return-type="DgfDuplctLicnsReason">
+			<finder-column name="nationalId" />
+
+		</finder>
+		
+		<finder name="duplicateLicNationalIdAndLicenseFinder"
+			return-type="Collection">
+			<finder-column name="nationalId" />
+			<finder-column name="licenseNo" />
+		</finder>
+		
+		<finder name="duplicateLicTradeLicAttchIdFinder"
+			return-type="DgfDuplctLicnsReason">
+			<finder-column name="tradeLicAttchId" />
+
+		</finder>
+		<finder name="duplicateLicPaymentAttchIdFinder"
+			return-type="DgfDuplctLicnsReason">
+			<finder-column name="paymentAttchId" />
+
+		</finder>
+
+		<finder name="duplicateLicFglPrePrimaryIdFinder"
+			return-type="Collection">
+			<finder-column name="fglPrePrimaryId" />
+
+		</finder>
+
+		<finder name="duplicateLicApplicationNoFinder"
+			return-type="DgfDuplctLicnsReason">
+			<finder-column name="applicationNo" />
+
+		</finder>
+
+		<reference entity="DgfFglLicDtls"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+
+	</entity>
+
+	<entity local-service="true" name="DgfDistributionSchedules"
+		remote-service="true" table="dgf_distribution_schedules">
+
+		<!-- PK fields -->
+
+		<column name="id" primary="true" type="String" db-name="id" />
+
+		<!--DGF distribution schedules collumn -->
+
+		<column name="distributionYear" type="long"
+			db-name="distribution_year" />
+		<column name="distributionMonth" type="String"
+			db-name="distribution_month" />
+		<column name="openStatus" type="String" db-name="open_status" />
+		<column name="startDate" type="Date" db-name="start_date" />
+		<column name="endDate" type="Date" db-name="end_date" />
+		<column name="remarks" type="String" db-name="remarks" />
+		<column name="userId" type="long" db-name="user_id" />
+		<column name="createdAt" type="Date" db-name="created_at" />
+		<column name="updatedAt" type="Date" db-name="updated_at" />
+
+
+		<finder name="DistributionMonthAndYear"
+			return-type="DgfDistributionSchedules">
+			<finder-column name="distributionYear"></finder-column>
+			<finder-column name="distributionMonth"></finder-column>
+		</finder>
+		<finder name="OpenStatus" return-type="Collection">
+			<finder-column name="openStatus"></finder-column>
+		</finder>
+		<finder name="StartDateAndEndDate"
+			return-type="DgfDistributionSchedules">
+			<finder-column name="startDate"></finder-column>
+			<finder-column name="endDate"></finder-column>
+		</finder>
+
+
+	</entity>
+
+	<entity local-service="true" name="DgfDlrDistributionDtls"
+		remote-service="true" table="dgf_dlr_distribution_dtls">
+		<!-- pk -->
+		<column name="id" primary="true" type="long" db-name="id" />
+
+		<!-- DGF_DEALER_DISTRIBUTION_DTLS table -->
+		<column name="dealerId" type="long" db-name="dealer_id" />
+		<column name="beneficiariesId" type="long"
+			db-name="beneficiaries_id" />
+		<column name="beneficiariesMobileNo" type="String"
+			db-name="beneficiaries_mobile_no" />
+		<column name="cardNo" type="long" db-name="card_no" />
+		<column name="unionId" type="long" db-name="union_id" />
+		<column name="distributionDate" type="Date"
+			db-name="distribution_date" />
+		<column name="distributionQty" type="long"
+			db-name="distribution_qty" />
+		<column name="status" type="int" db-name="status" />
+		<column name="createdAt" type="Date" db-name="created_at" />
+		<column name="updatedAt" type="Date" db-name="updated_at" />
+		<column name="month" type="int" db-name="month" />
+		<column name="year" type="int" db-name="year" />
+
+
+		<finder name="dgfDlrDistributionDtlsByDealerId"
+			return-type="Collection">
+			<finder-column name="dealerId" />
+		</finder>
+
+		<finder name="dgfDlrDistributionDtlsByBeneficiariesId"
+			return-type="Collection">
+			<finder-column name="beneficiariesId" />
+		</finder>
+
+		<finder
+			name="dgfDlrDistributionDtlsByDealerIdAndBeneficiariesId"
+			return-type="Collection">
+			<finder-column name="dealerId" />
+			<finder-column name="beneficiariesId" />
+		</finder>
+
+		<finder
+			name="dgfDlrDistributionDtlsByBeneficiariesAndMonthAndYear"
+			return-type="DgfDlrDistributionDtls" unique="true">
+			<finder-column name="beneficiariesId" />
+			<finder-column name="month" />
+			<finder-column name="year" />
+		</finder>
+
+	</entity>
+
+
+	<!-- =====DGF USER FORTNIGHTLY REPORT START===== -->
+
+	<!-- Fortnightly Report C Form Entity -->
+	<entity name="DgfUsersFortnightReportCForm" local-service="true"
+		remote-service="true" table="dgf_users_fortnightreport_c">
+
+		<!-- Columns -->
+		<column name="reportId" type="long" primary="true" />
+		<column name="userId" type="long" />
+		<column name="usernationalId" type="String" />
+		<column name="licenseNo" type="String" />
+		<column name="screenName" type="String" />
+		<column name="fullName" type="String" />
+		<column name="bussinessType" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="product" type="String" />
+		<column name="daterecipt" type="Date" />
+		<column name="receivedQuantity" type="int" />
+		<column name="receivedQuantityUnit" type="String" />
+		<column name="lastDateApprove" type="Date" />
+		<column name="unsoldQuantity" type="int" />
+		<column name="unsolddunit" type="String" />
+		<column name="reasonForBeingUnsold" type="String" />
+
+		<!-- Finders -->
+		<finder name="FortnightReportCFormByUsernationalId"
+			return-type="Collection">
+			<finder-column name="usernationalId" />
+		</finder>
+		<finder name="ForthnightReportCFormByScreenName"
+			return-type="Collection">
+			<finder-column name="screenName" />
+		</finder>
+
+		<finder name="FortnightReportCFormByNIDandLicenseNo"
+			return-type="DgfUsersFortnightReportCForm">
+			<finder-column name="usernationalId" />
+			<finder-column name="licenseNo" />
+		</finder>
+		<!-- Reference -->
+		<reference entity="DgfUsers"
+			package-path="bd.gov.dgfood.food.grain.license"></reference>
+	</entity>
+
+	<!-- Fortnightly Report D Form Entity -->
+
+	<entity name="DgfUsersFortnightReportDForm" local-service="true"
+		remote-service="true" table="dgf_users_fortnightreport_d">
+
+		<!-- Columns -->
+		<column name="reportId" type="long" primary="true" />
+		<column name="userId" type="long" />
+		<column name="usernationalId" type="String" />
+		<column name="licenseNo" type="String" />
+		<column name="screenName" type="String" />
+		<column name="fullName" type="String" />
+		<column name="bussinessType" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="product" type="String" />
+		<column name="initalStockOn" type="int" />
+		<column name="initalStockOnUnit" type="String" />
+		<column name="recivedQuantity" type="int" />
+		<column name="recivedQuantityUnit" type="String" />
+		<column name="sellingQuantity" type="int" />
+		<column name="sellingQuantityUnit" type="String" />
+		<column name="quantityOfFinishingStock" type="int" />
+		<column name="quantityOfFinishingStockUnit" type="String" />
+		<column name="comment" type="String" />
+		<column name="nationalId" type="String" />
+
+		<!-- Finders -->
+		<finder name="FortnightReportDFormByUsernationalId"
+			return-type="Collection">
+			<finder-column name="usernationalId" />
+		</finder>
+
+		<finder name="FortnightReportDFormByScreenName"
+			return-type="Collection">
+			<finder-column name="screenName" />
+		</finder>
+
+		<finder name="FortnightReportDFormByNIDandLicenseNo"
+			return-type="DgfUsersFortnightReportDForm">
+			<finder-column name="usernationalId" />
+			<finder-column name="licenseNo" />
+		</finder>
+
+		<!-- Reference -->
+		<reference entity="DgfUsers"
+			package-path="bd.gov.dgfood.food.grain.license"></reference>
+
+	</entity>
+	
+	<!-- DgfFglProductDtls -->
+	<entity local-service="true" name="DgfFglProductDtls"
+		remote-service="true" table="dgf_fgl_product_dtls">
+		<!-- pk -->
+		<column name="fglProductPrimaryId" primary="true" type="long" />
+
+		<!-- DGF_FGL_PRODUCT_DTLS table -->
+		<column name="nationalId" type="String" />
+		<column name="fglLicPrimaryId" type="long" />
+		<column name="productType" type="String" />
+		<column name="stockDuration" type="long" />
+		<column name="stockAmount" type="long" />
+		<column name="createdDate" type="Date" />
+		<column name="createdBy" type="long" />
+		<column name="modifiedDate" type="Date" />
+		<column name="modifiedBy" type="long" />
+
+		<!-- DGF_FGL_PRODUCT_DLTS table Finders -->
+		<finder name="dgfFglProductDtlsByFglLicPrimaryId"
+			return-type="Collection">
+			<finder-column name="fglLicPrimaryId" />
+		</finder>
+		<finder name="dgfFglProductDtlsByNationalId"
+			return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+		<reference entity="DgfFglLicDtls"
+			package-path="bd.gov.dgfood.food.grain.license">
+		</reference>
+	</entity>
+
+</service-builder>

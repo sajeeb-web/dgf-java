@@ -1,0 +1,4 @@
+Bundle-Name: dgfood-food-grain-license-user-creation
+Bundle-SymbolicName: bd.gov.dgfood.food.grain.license.user.creation
+Bundle-Version: 1.0.0
+Export-Package: bd.gov.dgfood.food.grain.license.user.creation.constants

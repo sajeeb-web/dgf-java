@@ -1,0 +1,4 @@
+Bundle-Name: dgfood-food-grain-license-api
+Bundle-SymbolicName: bd.gov.dgfood.food.grain.license.rest.api
+Bundle-Version: 1.0.12
+Liferay-Configuration-Path: /configuration

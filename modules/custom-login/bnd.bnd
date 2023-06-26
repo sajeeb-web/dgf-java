@@ -1,0 +1,6 @@
+Bundle-Name: custom-login
+Bundle-SymbolicName: com.dgf.food.custom.login
+Bundle-Version: 1.0.0
+Export-Package: com.dgf.food.custom.login.constants
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

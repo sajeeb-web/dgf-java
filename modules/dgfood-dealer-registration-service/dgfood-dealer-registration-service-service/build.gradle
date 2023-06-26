@@ -1,0 +1,12 @@
+dependencies {
+	compile project(":modules:dgfood-dealer-registration-service:dgfood-dealer-registration-service-api")
+	compile project(":modules:dgfood-food-grain-license-service:dgfood-food-grain-license-service-api")
+	
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
+
+buildService {
+	apiDir = "../dgfood-dealer-registration-service-api/src/main/java"
+}
+
+group = "bd.gov.dgfood.dealer.registration"

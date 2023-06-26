@@ -1,0 +1,6 @@
+Bundle-Description: Custom language keys along with bangla localization
+Bundle-SymbolicName: bd.gov.dgfood.i18n
+Bundle-Version: 1.0.0
+-sources: true
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

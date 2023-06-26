@@ -1,0 +1,149 @@
+.dgfood-food-grain-license-application-list-web {
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.green-text {
+  color: #5bb600;
+}
+
+.green-bg {
+  background-color: #61c002 !important;
+  color: #fff !important;
+}
+
+.green-bg:hover {
+  background-color: #428203 !important;
+  color: #fff !important;
+}
+
+.main-body-list {
+  padding: 0 30px;
+  display: flex;
+}
+
+.text14 {
+  font-size: 14px;
+}
+
+.text-bold {
+  font-weight: 600 !important;
+}
+
+.pending-card {
+  background-color: #fffcd3 !important;
+  color: #ffee00 !important;
+}
+.rejected-card {
+  background-color: #ffc9c9 !important;
+  color: #ffee00 !important;
+}
+.reviewed-card {
+  background-color: #98fb98 !important;
+  color: #ffee00 !important;
+}
+.download-btn {
+  background-color: #ceffce !important;
+  color: #ffee00 !important;
+  font-weight: 700 !important;
+}
+.main-div {
+  padding: 0.5rem 2rem;
+}
+
+li {
+  list-style: none;
+}
+
+.alignMe {
+  padding-left: 0 !important;
+}
+
+.alignMe .custom-colon {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+  padding-right: 5px;
+  /* Ensures colon does not overlay the text */
+}
+
+.alignMe .custom-colon::after {
+  content: ":";
+  position: absolute;
+  right: 5px;
+}
+//Search container custom styles.------------.
+.search-container-wrapper table {
+  border: none;
+  overflow-y: hidden !important;
+  /* Adjust column widths as needed */
+}
+
+.lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle {
+  color: #ffffff !important;
+  background-color: #5bb600 !important;
+}
+.lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle:active,
+.lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle:focus,
+.lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle:hover {
+  background-color: #3a690b !important;
+  border-radius: 4px;
+}
+
+.mark {
+  background-color: #bcf4bc !important;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 6px 15px 6px 15px;
+}
+.mark:hover {
+  background-color: #c8f8c8 !important;
+}
+.lfr-pagination-buttons > .page-link {
+  background-color: #61c002 !important;
+  border-color: #61c002 !important;
+}
+
+.lfr-pagination-buttons > .page-item.active > .page-link {
+  background-color: #428203 !important;
+  border-color: #428203 !important;
+}
+.btn-reset {
+  background-color: #808080 !important;
+  color: #ffffff !important;
+}
+
+@media screen and (max-width: 600px) {
+  * {
+    font-size: 12px;
+  }
+  .move-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .main-div {
+    padding: 1rem;
+  }
+
+  .card_body {
+    padding: 5px 10px !important;
+  }
+
+  .search-container-wrapper table {
+    font-size: 12px;
+    border: none;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    /* Adjust column widths as needed */
+  }
+}
+
+.yui3-skin-sam .yui3-widget-mask {
+  background-color: transparent !important;
+  zoom: 1;
+  -ms-filter: "alpha(opacity=40)";
+  filter: alpha(opacity=40);
+  opacity: 0;
+}

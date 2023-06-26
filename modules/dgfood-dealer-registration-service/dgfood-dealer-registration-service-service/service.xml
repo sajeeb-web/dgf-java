@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="bd.gov.dgfood.dealer.registration">
+	<namespace>DLR</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+
+	<entity local-service="true" name="DgfDlrPerfDtls"
+		remote-service="true" table="dgf_dlr_perf_dtls">
+		
+		<!-- PK fields -->	
+		<column name="dgfDlrPerfId" primary="true" type="long" db-name="dgf_dlr_perf_id"/>
+		
+		<column name="nationalId" type="String" db-name="national_id"/>
+		<column name="dlrRegApplNo" type="long" db-name="dlr_reg_appl_no"/>
+		<column name="dlrRegNo" type="long" db-name="dlr_reg_no"/>
+		<column name="dlrPerfYr1" type="long" db-name="dlr_perf_yr1"/>
+		<column name="dlrPerfYr1AllocQty" type="long" db-name="dlr_perf_yr1_alloc_qty"/>
+		<column name="dlrPerfYr1ComdtyQty" type="long" db-name="dlr_perf_yr1_comdty_qty"/>
+		<column name="dlrPerfYr1DlrCtgry" type="String" db-name="dlr_perf_yr1_dlr_ctgry"/>
+		<column name="dlrPerfYr1Rmrk" type="String" db-name="dlr_perf_yr1_rmrk"/>
+		<column name="dlrPerfYr2" type="long" db-name="dlr_perf_yr2"/>
+		<column name="dlrPerfYr2AllocQty" type="long" db-name="dlr_perf_yr2_alloc_qty"/>
+		<column name="dlrPerfYr2ComdtyQty" type="long" db-name="dlr_perf_yr2_comdty_qty"/>
+		<column name="dlrPerfYr2DlrCtgry" type="String" db-name="dlr_perf_yr2_dlr_ctgry"/>
+		<column name="dlrPerfYr2Rmrk" type="String" db-name="dlr_perf_yr2_rmrk"/>
+		<column name="dlrPerfYr3" type="long" db-name="dlr_perf_yr3"/>
+		<column name="dlrPerfYr3AllocQty" type="long" db-name="dlr_perf_yr3_alloc_qty"/>
+		<column name="dlrPerfYr3ComdtyQty" type="long" db-name="dlr_perf_yr3_comdty_qty"/>
+		<column name="dlrPerfYr3DlrCtgry" type="String" db-name="dlr_perf_yr3_dlr_ctgry"/>
+		<column name="dlrPerfYr3Rmrk" type="String" db-name="dlr_perf_yr3_rmrk"/>
+		<column name="version" type="long" db-name="version"/>
+		
+		<finder name="DgfDlrPerfDtlsByRegNo" return-type="DgfDlrPerfDtls"
+		unique="true">
+			<finder-column name="dlrRegNo" />
+		</finder>
+		
+		<finder name="DgfDlrPerfDtlsByNid" return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+	</entity>
+	
+	<entity name="DgfDlrWithdrawal" local-service="true"
+        remote-service="true" table="dgf_dlr_withdrawal" >
+        
+        
+        <!-- pk -->
+        <column name="dlrWithdrawalId" type="long" primary="true" db-name="dlr_withdrawal_id" />
+
+        <!-- other fields -->
+        <column name="nationalId" type="String" db-name="national_id"/>
+        <column name="licenseNo" type="String" db-name="license_no"/>
+        <column name="dealerName" type="String" db-name="dealer_name"/>
+        <column name="mobileNo" type="String" db-name="mobile_no"/>
+        <column name="reason" type="String" db-name="reason"/>
+        <column name="programType" type="String" db-name="program_type"/>
+        <column name="omsSubType" type="String" db-name="oms_sub_type" />
+        <column name="createdDate" type="Date" db-name="created_date"/>
+        <column name="modifiedBy" type="long" db-name="modified_by"/>
+        <column name="modifiedDate" type="Date" db-name="modified_date"/>
+        <column name="userId" type="long" db-name="user_id" />
+		<column name="groupId" type="long" db-name="group_id" />
+		<column name="companyId" type="long" db-name="company_id" />
+		<column name="dlrRegNo" type="long" db-name="dlr_reg_no" />
+		<column name="regApplNo" type="long" db-name="reg_appl_no" />
+        
+        <!-- workflow fields -->
+        <column name="status" type="int" db-name="status"/>
+        <column name="statusByUserId" type="long" db-name="status_by_user_id" />
+        <column name="statusByUserName" type="String" db-name="status_by_user_name"/>
+        <column name="statusDate" type="Date" db-name="status_date" />
+        
+        
+        <finder name="DlrWithdrawalByNationalId"
+            return-type="Collection">
+            <finder-column name="nationalId" />
+        </finder>
+        
+        
+        <finder name="DlrWithdrawalByLicenseNo"
+            return-type="Collection">
+            <finder-column name="licenseNo" />
+        </finder>
+
+        <finder name="DlrWithdrawalByNationalIdAndLicenseNo"
+            return-type="DgfDlrWithdrawal" unique="true">
+            <finder-column name="nationalId" />
+            <finder-column name="licenseNo" />
+            <finder-column name="dlrRegNo" />
+        </finder>
+
+        
+    </entity>
+		
+	<entity name="DgfDlrRegAddlDtls" local-service="true" remote-service="true" table="dgf_dlr_reg_addl_dtls">
+		  <!-- PK fields -->
+		  <column name="dlrRegAddlDtlsId" type="long" primary="true" db-name="dlr_reg_addl_dtls_id" />
+		  
+		  <column name="nationalId" type="String" db-name="national_id" />
+		  <column name="dlrRegAppLNo" type="long" db-name="dlr_reg_appl_no" />
+		  <column name="dlrRegNo" type="long" db-name="dlr_reg_no" />
+		  <column name="pblcRep" type="int" db-name="pblc_rep" />
+		  <column name="wrkInGovt" type="int" db-name="wrk_in_govt" />
+		  <column name="physclyChlngd" type="int" db-name="physcly_chlngd" />
+		  <column name="phsclyChlnGdAttchId" type="long" db-name="phscly_chln_gd_attch_id" />
+		  <column name="licenseType" type="String" db-name="license_type" />
+		  <column name="thirdPartyOpsFlg" type="long" db-name="third_party_ops_flg" />
+		  <column name="fmlyDlrShpNo" type="long" db-name="fmly_dlr_shp_no" />
+		  <column name="dlrshpFmlyMmbrName" type="String" db-name="dlrshp_fmly_mmbr_name" />
+		  <column name="dlrshpFmlyMmbrType" type="String" db-name="dlrshp_fmly_mmbr_type" />
+		  <column name="dlrShpTrckTypFlg" type="int" db-name="dlr_shp_trck_typ_flg" />
+		  <column name="trckLicnsPlatNo" type="String" db-name="trck_licns_plat_no" />
+		  <column name="trckCpcty" type="long" db-name="trck_cpcty" />
+		  <column name="trckMake" type="String" db-name="trck_make" />
+		  <column name="trckModel" type="String" db-name="trck_model" />
+		  <column name="trckRentOwnFlg" type="String" db-name="trck_rent_own_flg" />
+		  <column name="trckMfgYr" type="long" db-name="trck_mfg_yr" />
+		  <column name="shpLength" type="long" db-name="shp_length" />
+		  <column name="shpHeight" type="long" db-name="shp_height" />
+		  <column name="shpWidth" type="long" db-name="shp_width" />
+		  <column name="shpStrgCpcty" type="long" db-name="shp_strg_cpcty" />
+		  <column name="shpFlrCmntd" type="int" db-name="shp_flr_cmntd" />
+		  <column name="shpSignBrd" type="int" db-name="shp_sign_brd" />
+		  <column name="dlrLicnsPosses" type="int" db-name="dlr_licns_posses" />
+		  <column name="dlrRunShpHimself" type="int" db-name="dlr_run_shp_himself" />
+		  <column name="dlrFmlyDlrShpFlg" type="long" db-name="dlr_fmly_dlr_shp_flg" />
+		  <column name="version" type="long" db-name="version" />
+		
+		<finder name="DgfDlrRegAddlDtlsByRegNo" return-type="DgfDlrRegAddlDtls"
+		unique="true">
+			<finder-column name="dlrRegNo" />
+		</finder>
+		
+		<finder name="DgfDlrRegAddlDtlsByNid" return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+	</entity>
+		
+	<entity name="DgfDlrRegDtls" local-service="true"
+				remote-service="true" table="dgf_dlr_reg_dtls">
+		
+		<!-- PK fields -->
+		<column name="dlrRegNo" primary="true" type="long" db-name="dlr_reg_no" />
+				
+		<column name="nationalId" type="String" db-name="national_id" />
+		<column name="userId" type="long" db-name="user_id" />
+		<column name="groupId" type="long" db-name="group_id" />
+		<column name="companyId" type="long" db-name="company_id" />
+		<column name="dlrRegApplNo" type="long" db-name="dlr_reg_appl_no" />
+		<column name="fglLicnsNo" type="String" db-name="fgl_licns_no" />
+		<column name="fglLicnsIssueDate" type="Date" db-name="fgl_licns_issue_date" />
+		<column name="trdLicnsNo" type="long" db-name="trd_licns_no" />
+		<column name="trdLicnsExpDate" type="Date" db-name="trd_licns_exp_date" />
+		<column name="dlrTypeId" type="String" db-name="dlr_type_id" />
+		<column name="maritalStatus" type="String" db-name="marital_status" />
+		<column name="spouseName" type="String" db-name="spouse_name" />
+		<column name="spouseFthrName" type="String" db-name="spouse_fthr_name" />
+		<column name="spouseNid" type="String" db-name="spouse_nid" />
+		<column name="spouseBrthDate" type="Date" db-name="spouse_brth_date" />
+		<column name="dlrRegExpiryDate" type="Date" db-name="dlr_reg_expiry_date" />
+		<column name="sapBuCode" type="String" db-name="sap_bu_code" />
+		<column name="dlrRegApplStatus" type="String" db-name="dlr_reg_appl_status" />
+		<column name="dlrRegCrtdDate" type="Date" db-name="dlr_reg_crtd_date" />
+		<column name="pymntTrnRefNo" type="long" db-name="pymnt_trn_ref_no" />
+		<column name="pymntTrnStatus" type="String" db-name="pymnt_trn_status" />
+		<column name="challanDocId" type="long" db-name="challan_doc_id" />
+		<column name="incmTaxAttchID" type="long" db-name="incm_tax_attch_id" />
+		<column name="bnkSolvncyCertId" type="long" db-name="bnk_solvncy_cert_id" />
+		<column name="shpOwnshipDocuId" type="long" db-name="shp_ownship_docu_id" />
+		<column name="shpRentedDocuId" type="long" db-name="shp_rented_docu_id" />
+		<column name="signatureId" type="long" db-name="signature_id" />
+		<column name="dlrApprRjctComments" type="String" db-name="dlr_appr_rjct_comments" />
+		<column name="dlrRegApprRejRmrk" type="String" db-name="dlr_reg_appr_rej_rmrk" />
+		<column name="status" type="int" db-name="status" />
+		<column name="statusByUserId" type="long" db-name="status_by_user_id" />
+		<column name="statusByUserName" type="String" db-name="status_by_user_name" />
+		<column name="statusDate" type="Date" db-name="status_date" />
+		<column name="version" type="long" db-name="version" />
+		<column name="dlrRegCrtdBy" type="String" db-name="dlr_reg_crtd_by" />
+		<column name="createDate" type="Date" db-name="create_date" />
+		<column name="lastUpdtdBy" type="long" db-name="last_updtd_by" />
+		<column name="modifedDate" type="Date" db-name="modifed_date" />
+		<column name="dlrOmsSubType" type="String" db-name="dlr_oms_sub_type" />
+		<column name="division" type="long" db-name="division" />
+		<column name="district" type="long" db-name="district" />
+		<column name="upzilla" type="long" db-name="upzilla" />
+		<column name="unionName" type="long" db-name="union_name" />
+		<column name="dlrBrthDate" type="Date" db-name="dlr_brth_date" />
+		
+		<finder name="DgfDlrRegDtlsByNid" return-type="DgfDlrRegDtls" unique="true">
+			<finder-column name="nationalId" />
+		</finder>
+		
+		<finder name="DgfDlrRegDtlsByNationalIdAndFoodgrainLicenseNo"
+			return-type="DgfDlrRegDtls">
+			<finder-column name="nationalId" />
+			<finder-column name="fglLicnsNo" />
+			<finder-column name="dlrRegNo" />
+		</finder>
+		
+		<finder name="DgfDlrRegDtlsByUserId" return-type="DgfDlrRegDtls">
+			<finder-column name="userId" />
+		</finder>
+		
+	</entity>
+		
+		
+	<entity local-service="true" name="DgfDlrUpdtTempDtls"
+		remote-service="true" table="dgf_dlr_updt_temp_dtls">
+		<!-- PK fields -->
+		<column name="dgfDlrUpdateReqId" primary="true" type="long" db-name="dgf_dlr_update_req_id" />
+		
+		<column name="nationalId" type="String" db-name="national_id" />
+		<column name="dlrRegNo" type="long" db-name="dlr_reg_no" />
+		<column name="maritalStatus" type="String" db-name="marital_status" />
+		<column name="spouseName" type="String" db-name="spouse_name" />
+		<column name="spouseFthrName" type="String" db-name="spouse_fthr_name" />
+		<column name="spouseNid" type="String" db-name="spouse_nid" />
+		<column name="spouseBrthDate" type="Date" db-name="spouse_brth_date" />
+		<column name="pblcRep" type="int" db-name="pblc_rep" />
+		<column name="wrkInGovt" type="int" db-name="wrk_in_govt" />
+		<column name="physclyChlngd" type="int" db-name="physcly_chlngd" />
+		<column name="phsclyChlngdAttchId" type="long" db-name="phscly_chlngd_attch_id" />
+		<column name="shpDivision" type="long" db-name="shp_division" />
+		<column name="shpDistrict" type="long" db-name="shp_district" />
+		<column name="shpUpzilla" type="long" db-name="shp_upzilla" />
+		<column name="shpUnion" type="long" db-name="shp_union" />
+		<column name="shpVillage" type="String" db-name="shp_village" />
+		<column name="shpWard" type="String" db-name="shp_ward" />
+		<column name="shpZipCode" type="String" db-name="shp_zip_code" />
+		<column name="shpPstOffc" type="String" db-name="shp_pst_offc" />
+		<column name="shpPresentAddress" type="String" db-name="shp_present_address" />
+		<column name="shpLocation" type="String" db-name="shp_location" />
+		<column name="shpLength" type="long" db-name="shp_length" />
+		<column name="shpHeight" type="long" db-name="shp_height" />
+		<column name="shpWidth" type="long" db-name="shp_width" />
+		<column name="shpStrgCpcty" type="long" db-name="shp_strg_cpcty" />
+		<column name="shpFlrCmntd" type="int" db-name="shp_flr_cmntd" />
+		<column name="shpSignBrd" type="int" db-name="shp_sign_brd" />
+		<column name="licenseType" type="String" db-name="license_type" />
+		<column name="thrdPartyOpsFlg" type="long" db-name="thrd_party_ops_flg" />
+		<column name="dlrshpFmlyMmbrName" type="String" db-name="dlrshp_fmly_mmbr_name" />
+		<column name="dlrshpFmlyMmbrType" type="String" db-name="dlrshp_fmly_mmbr_type" />
+		<column name="dlrPerfYr1" type="long" db-name="dlr_perf_yr1" />
+		<column name="dlrPerfYr1AllocQty" type="long" db-name="dlr_perf_yr1_alloc_qty" />
+		<column name="dlrPerfYr1ComdtyQty" type="long" db-name="dlr_perf_yr1_comdty_qty" />
+		<column name="dlrPerfYr1DlrCtgry" type="String" db-name="dlr_perf_yr1_dlr_ctgry" />
+		<column name="dlrPerfYr1Rmrk" type="String" db-name="dlr_perf_yr1_rmrk" />
+		<column name="dlrPerfYr2" type="long" db-name="dlr_perf_yr2" />
+		<column name="dlrPerfYr2AllocQty" type="long" db-name="dlr_perf_yr2_alloc_qty" />
+		<column name="dlrPerfYr2ComdtyQty" type="long" db-name="dlr_perf_yr2_comdty_qty" />
+		<column name="dlrPerfYr2DlrCtgry" type="String" db-name="dlr_perf_yr2_dlr_ctgry" />
+		<column name="dlrPerfYr2Rmrk" type="String" db-name="dlr_perf_yr2_rmrk" />
+		<column name="dlrPerfYr3" type="long" db-name="dlr_perf_yr3" />
+		<column name="dlrPerfYr3AllocQty" type="long" db-name="dlr_perf_yr3_alloc_qty" />
+		<column name="dlrPerfYr3ComdtyQty" type="long" db-name="dlr_perf_yr3_comdty_qty" />
+		<column name="dlrPerfYr3DlrCtgry" type="String" db-name="dlr_perf_yr3_dlr_ctgry" />
+		<column name="dlrPerfYr3Rmrk" type="String" db-name="dlr_perf_yr3_rmrk" />
+		<column name="trckLicnsPlatNo" type="String" db-name="trck_licns_plat_no" />
+		<column name="trckCpcty" type="long" db-name="trck_cpcty" />
+		<column name="trckMake" type="String" db-name="trck_make" />
+		<column name="trckModel" type="String" db-name="trck_model" />
+		<column name="trckRentOwnFlg" type="String" db-name="trck_rent_own_flg" />
+		<column name="trckMfgYr" type="long" db-name="trck_mfg_yr" />
+		<column name="version" type="long" db-name="version" />
+		<column name="status" type="int" db-name="status" />
+		<column name="statusByUserId" type="long" db-name="status_by_user_id" />
+		<column name="statusByUserName" type="String" db-name="status_by_user_name" />
+		<column name="statusDate" type="Date" db-name="status_date" />
+		<column name="createDate" type="Date" db-name="create_date" />
+		<column name="lastUpdtdBy" type="long" db-name="last_updtd_by" />
+		<column name="modifiedDate" type="Date" db-name="modified_date" />
+		<column name="foodgrainLicense" type="int" db-name="foodgrain_license" />
+		<column name="tradeLicense" type="int" db-name="trade_license" />
+		<column name="tcvDlrLicense" type="int" db-name="tcv_dlr_license" />
+		<column name="importLicense" type="int" db-name="import_license" />
+		<column name="licenseEssentialGoods" type="int" db-name="license_essential_goods" />
+		<column name="tradeLicenseAgriculture" type="int" db-name="trade_license_agriculture" />
+		<column name="dlrOmsSubType" type="String" db-name="dlr_oms_sub_type" />
+		<column name="userId" type="long" db-name="user_id" />
+		<column name="groupId" type="long" db-name="group_id" />
+		<column name="companyId" type="long" db-name="company_id" />
+		<column name="dlrRunShpHimself" type="int" db-name="dlr_run_shp_himself" />
+		<column name="dlrShpTrckTypFlg" type="int" db-name="dlr_shp_trck_typ_flg" />
+		
+		<finder name="DgfDlrUpdtTempDtlsByRegNo" return-type="Collection">
+			<finder-column name="dlrRegNo" />
+		</finder>
+		<finder name="DgfDlrUpdtTempDtlsByNid" return-type="Collection">
+			<finder-column name="nationalId" />
+		</finder>
+	</entity>
+
+</service-builder>

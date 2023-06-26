@@ -1,0 +1,7 @@
+Bundle-Name: dgfood-food-grain-license-renew-web
+Bundle-SymbolicName: bd.gov.dgfood.food.grain.license.renew
+Bundle-Version: 1.0.0
+Export-Package: bd.gov.dgfood.food.grain.license.renew.constants
+
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

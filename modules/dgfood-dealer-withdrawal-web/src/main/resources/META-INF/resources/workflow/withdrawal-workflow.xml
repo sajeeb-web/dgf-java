@@ -1,0 +1,1337 @@
+<?xml version="1.0"?>
+
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_7.4.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.4.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_4_0.xsd"
+>
+	<version>20</version>
+	<condition>
+		<name>e7ef5004-5fb8-4056-9c5d-30b468c53162</name>
+		<description>Execute conditional logic.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						-140.5796127319336,
+						136.13392639160156
+					]
+				}
+			]]>
+		</metadata>
+		<labels>
+			<label language-id="en_US">
+				Program Selection
+			</label>
+			<label language-id="en_GB">
+				Program Selection
+			</label>
+			<label language-id="bn_BD">
+				Program Selection
+			</label>
+		</labels>
+		<script>
+			<![CDATA[import bd.gov.dgfood.dealer.registration.model.DgfDlrWithdrawal;
+import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+
+DgfDlrWithdrawal dgfDlrWithdrawal = DgfDlrWithdrawalLocalServiceUtil.getDgfDlrWithdrawal(classPK);
+
+String businessType = dgfDlrWithdrawal.getProgramType().toUpperCase();
+boolean isOMS = businessType.equals("OMS");
+if(isOMS ){
+returnValue = "4f0829c3-4250-417f-8a82-649998c1ee9d"
+}else{
+returnValue = "279703f7-4dc9-425c-bd3c-34be7a4317b2"
+}]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						FFP
+					</label>
+					<label language-id="en_GB">
+						FFP
+					</label>
+					<label language-id="bn_BD">
+						FFP
+					</label>
+				</labels>
+				<name>279703f7-4dc9-425c-bd3c-34be7a4317b2</name>
+				<target>23fd4c00-bc08-48d3-a242-3c59fe1ca89e</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						OMS
+					</label>
+					<label language-id="en_GB">
+						OMS
+					</label>
+					<label language-id="bn_BD">
+						OMS
+					</label>
+				</labels>
+				<name>4f0829c3-4250-417f-8a82-649998c1ee9d</name>
+				<target>d8187a6e-33d5-4a10-b5fc-bd986dd0fc9c</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</condition>
+	<condition>
+		<name>d8187a6e-33d5-4a10-b5fc-bd986dd0fc9c</name>
+		<description>Execute conditional logic.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						114.97548451638501,
+						-136.9320723897311
+					]
+				}
+			]]>
+		</metadata>
+		<labels>
+			<label language-id="en_US">
+				Location Filter
+			</label>
+			<label language-id="en_GB">
+				Location Filter
+			</label>
+			<label language-id="bn_BD">
+				Location Filter
+			</label>
+		</labels>
+		<script>
+			<![CDATA[import bd.gov.dgfood.dealer.registration.model.DgfDlrWithdrawal;
+import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawal dgfDlrWithdrawal = DgfDlrWithdrawalLocalServiceUtil.getDgfDlrWithdrawal(classPK);
+boolean isDcf = DgfDlrWithdrawalLocalServiceUtil.checkDcfUsersExistByLocation(classPK);
+boolean isUcf = DgfDlrWithdrawalLocalServiceUtil.checkUcfUsersExistByLocation(classPK);
+boolean isCcdr = DgfDlrWithdrawalLocalServiceUtil.checkCcdrUsersExistByLocation(classPK);
+boolean isRcf = DgfDlrWithdrawalLocalServiceUtil.checkRcfUsersExistByLocation(classPK);
+if(isDcf && dgfDlrWithdrawal.getOmsSubType().equals("DISTRICT")){
+returnValue = "2cc59073-b3fc-42e1-8817-72a142817c1b"
+}else if(isUcf && dgfDlrWithdrawal.getOmsSubType().equals("UPAZILA")){
+returnValue = "6f57073d-bdbe-4924-be1d-d06b84150c63"
+}else if(isCcdr && dgfDlrWithdrawal.getOmsSubType().equals("DHAKA_METRO")){
+returnValue = "8cff359b-2754-48d5-9628-fc6616b5de4e"
+}else if(isRcf && dgfDlrWithdrawal.getOmsSubType().equals("OTHER_METRO")){
+returnValue = "ef0cafa9-5630-4531-916d-c6e9c56d5d53"
+}]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						Upzila
+					</label>
+					<label language-id="en_GB">
+						Upzila
+					</label>
+					<label language-id="bn_BD">
+						Upzila
+					</label>
+				</labels>
+				<name>6f57073d-bdbe-4924-be1d-d06b84150c63</name>
+				<target>23fd4c00-bc08-48d3-a242-3c59fe1ca89e</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						Zilla
+					</label>
+					<label language-id="en_GB">
+						Zilla
+					</label>
+					<label language-id="bn_BD">
+						Zilla
+					</label>
+				</labels>
+				<name>2cc59073-b3fc-42e1-8817-72a142817c1b</name>
+				<target>e59026b0-abc0-4381-9423-9e6055770b25</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						Dhaka Metro
+					</label>
+					<label language-id="en_GB">
+						Dhaka Metro
+					</label>
+					<label language-id="bn_BD">
+						Dhaka Metro
+					</label>
+				</labels>
+				<name>8cff359b-2754-48d5-9628-fc6616b5de4e</name>
+				<target>4ec68a7a-4118-47c0-a14e-177bcf9e629a</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						OTHER METRO
+					</label>
+					<label language-id="en_GB">
+						OTHER METRO
+					</label>
+					<label language-id="bn_BD">
+						OTHER METRO
+					</label>
+				</labels>
+				<name>ef0cafa9-5630-4531-916d-c6e9c56d5d53</name>
+				<target>065ac24d-f6f0-472f-9348-42fae5230023</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>a2015fac-ed23-4919-baed-b24e9d0b9ff9</name>
+		<description>Begin a workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						-153.7918657481478,
+						-385.88938810959587
+					]
+				}
+			]]>
+		</metadata>
+		<initial>true</initial>
+		<labels>
+			<label language-id="en_US">
+				Start
+			</label>
+			<label language-id="en_GB">
+				Start
+			</label>
+			<label language-id="bn_BD">
+				Start
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						Transition Label
+					</label>
+					<label language-id="en_GB">
+						Transition Label
+					</label>
+					<label language-id="bn_BD">
+						Transition Label
+					</label>
+				</labels>
+				<name>3fd74e4f-4ae2-4f6d-aa54-7740f90e66dd</name>
+				<target>e7ef5004-5fb8-4056-9c5d-30b468c53162</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>92d6fc1c-a5f6-42dd-a0f6-fc19507d6675</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1326.2012201046346,
+						-366.2426393966897
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approved</name>
+				<description></description>
+				<status>0</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Approved
+			</label>
+			<label language-id="en_GB">
+				Approved
+			</label>
+			<label language-id="bn_BD">
+				Approved
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>79f6795b-e458-442f-8dae-012ac3f331a4</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1329.299993469181,
+						-250.9999137249494
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>28c0f65b-e1cc-43b2-b64f-b143dd3ed526</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						950.4996616938403,
+						-255.79967103694577
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>DCF Reject SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "e59026b0-abc0-4381-9423-9e6055770b25";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendDcfRejectSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>f0eb8dbc-9150-464f-b8b8-f566bc670b1e</name>
+				<target>79f6795b-e458-442f-8dae-012ac3f331a4</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>5a21ab3c-1b8e-47a5-970b-cc78eaa72bb3</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						953.2999877929688,
+						-364.5999755859375
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>DCF Approved SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "e59026b0-abc0-4381-9423-9e6055770b25";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendDcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>ab7059a7-fa82-4d29-bb14-ff9a4929f83b</name>
+				<target>92d6fc1c-a5f6-42dd-a0f6-fc19507d6675</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>9f791e26-2967-463e-8cc0-0ada452decd0</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						967.5613460082436,
+						-77.6720023479964
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>CCDR Approved SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "4ec68a7a-4118-47c0-a14e-177bcf9e629a";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendCcdrApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>3b1befb7-d8fc-40b4-b8a2-dc44e8bb6f2a</name>
+				<target>3c4067f5-fa21-4fc5-9721-65a70b5ccf41</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>3c4067f5-fa21-4fc5-9721-65a70b5ccf41</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1316.8506294077047,
+						-81.86705162806508
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approved</name>
+				<description></description>
+				<status>0</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Approved
+			</label>
+			<label language-id="en_GB">
+				Approved
+			</label>
+			<label language-id="bn_BD">
+				Approved
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>02dae668-8103-4cbf-b503-e1f0df08e61c</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						958.6584571509235,
+						40.45247612055971
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>CCDR Reject SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "4ec68a7a-4118-47c0-a14e-177bcf9e629a";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendCcdrRejectSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>17cc0c8d-1585-46f6-b181-f30d86575d98</name>
+				<target>3c5c87ef-59c5-4def-b195-8d32b975f372</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>3c5c87ef-59c5-4def-b195-8d32b975f372</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1307.9646663207434,
+						40.32842489809727
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>09d9cfeb-6b62-41cd-9427-a265f895f0c6</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						962.1725833200071,
+						564.6421648084198
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>UCF Reject SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "23fd4c00-bc08-48d3-a242-3c59fe1ca89e";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendUcfRejectSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>ce9fc257-9ec3-4818-bdae-02058b365158</name>
+				<target>28cd8e9c-77c5-48f4-9a84-fa09d680b3c7</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>28cd8e9c-77c5-48f4-9a84-fa09d680b3c7</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1364.1725658461403,
+						546.788271184727
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>3af48338-0e6f-4edf-b6c2-0f83a7ffc6b4</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						956.0180880993461,
+						424.8292893825202
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>UCF Approved SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "23fd4c00-bc08-48d3-a242-3c59fe1ca89e";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendUcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>29a9659b-3795-421e-8897-ce51d553b576</name>
+				<target>64ef4282-7e2d-4b17-a20b-213a49dbd1b3</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>64ef4282-7e2d-4b17-a20b-213a49dbd1b3</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1352.4505577009013,
+						392.7440691457958
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approved</name>
+				<description></description>
+				<status>0</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Approved
+			</label>
+			<label language-id="en_GB">
+				Approved
+			</label>
+			<label language-id="bn_BD">
+				Approved
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>70c3be5a-8efa-45dd-acfd-cc51ad2c2e9b</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						960.2999877929688,
+						157.40000915527344
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>RCF Approved SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "065ac24d-f6f0-472f-9348-42fae5230023";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendRcfApprovedSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>73e28430-2bc7-43c9-b1d2-d3e155f8b900</name>
+				<target>77b15fa1-6529-4400-8e00-385b71c6de99</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>77b15fa1-6529-4400-8e00-385b71c6de99</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1318.2999877929688,
+						158.00001525878906
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approved</name>
+				<description></description>
+				<status>0</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Approved
+			</label>
+			<label language-id="en_GB">
+				Approved
+			</label>
+			<label language-id="bn_BD">
+				Approved
+			</label>
+		</labels>
+	</state>
+	<state>
+		<name>6dfba147-76ca-4c03-a916-ebb638f547ec</name>
+		<description>Execute actions in the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						958.3000183105469,
+						290.40000915527344
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>RCF Reject SMS</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+String nodeId = "065ac24d-f6f0-472f-9348-42fae5230023";
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.sendRcfRejectSmsWithWorkflowCommentsByClassPkAndNodeId(classPK, nodeId);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				SMS
+			</label>
+			<label language-id="en_GB">
+				SMS
+			</label>
+			<label language-id="bn_BD">
+				SMS
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>d1ede902-f7c5-4b8b-816c-469679081048</name>
+				<target>2579a83a-4076-48b0-ba13-d40aec6181ac</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>2579a83a-4076-48b0-ba13-d40aec6181ac</name>
+		<description>Conclude the workflow.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						1336.2999802404004,
+						288.4142720730999
+					],
+					"terminal": true
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Denied</name>
+				<description></description>
+				<status>4</status>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<labels>
+			<label language-id="en_US">
+				Reject
+			</label>
+			<label language-id="en_GB">
+				Reject
+			</label>
+			<label language-id="bn_BD">
+				Reject
+			</label>
+		</labels>
+	</state>
+	<task>
+		<name>23fd4c00-bc08-48d3-a242-3c59fe1ca89e</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						501.68350058885443,
+						508.22975214755706
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>UCF Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.setDealerUcfUserNotificationEvent(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>44867</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				UCF
+			</label>
+			<label language-id="en_GB">
+				UCF
+			</label>
+			<label language-id="bn_BD">
+				UCF
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>c0a0b8ae-a820-48c6-8c2a-d8a19d68a9a6</name>
+				<target>3af48338-0e6f-4edf-b6c2-0f83a7ffc6b4</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>5e70d7ae-01f1-483e-8587-55784d9be7d9</name>
+				<target>09d9cfeb-6b62-41cd-9427-a265f895f0c6</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>e59026b0-abc0-4381-9423-9e6055770b25</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						494.31671142578125,
+						-342.15000915527344
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>DCF Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.setDealerDcfUserNotificationEvent(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>44869</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				DCF
+			</label>
+			<label language-id="en_GB">
+				DCF
+			</label>
+			<label language-id="bn_BD">
+				DCF
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>b412883b-3bf6-44cf-a285-530199710305</name>
+				<target>5a21ab3c-1b8e-47a5-970b-cc78eaa72bb3</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>a831bc94-3662-479d-a9e2-a87fb0323e7b</name>
+				<target>28c0f65b-e1cc-43b2-b64f-b143dd3ed526</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>4ec68a7a-4118-47c0-a14e-177bcf9e629a</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						518.4186953350855,
+						-137.85661354036742
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>CCDR Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.setDealerCcdrUserNotificationEvent(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>222905</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				CCDR/ARO
+			</label>
+			<label language-id="en_GB">
+				CCDR/ARO
+			</label>
+			<label language-id="bn_BD">
+				CCDR/ARO
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>ca0928b8-bf63-468f-8369-b46e2f573cbd</name>
+				<target>9f791e26-2967-463e-8cc0-0ada452decd0</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>43cdfd6e-85f8-4b42-a8b4-f4b0b3ab9b29</name>
+				<target>02dae668-8103-4cbf-b503-e1f0df08e61c</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+	<task>
+		<name>065ac24d-f6f0-472f-9348-42fae5230023</name>
+		<description>Ask a user to work on the item.</description>
+		<metadata>
+			<![CDATA[
+				{
+					"xy": [
+						572.7476847578506,
+						185.95332092578883
+					]
+				}
+			]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>RCF Notification</name>
+				<description></description>
+				<script>
+					<![CDATA[import bd.gov.dgfood.dealer.registration.service.DgfDlrWithdrawalLocalServiceUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+DgfDlrWithdrawalLocalServiceUtil.setDealerRcfUserNotificationEvent(classPK);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<priority>1</priority>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-id>222904</role-id>
+				</role>
+			</roles>
+		</assignments>
+		<labels>
+			<label language-id="en_US">
+				RCF
+			</label>
+			<label language-id="en_GB">
+				RCF
+			</label>
+			<label language-id="bn_BD">
+				RCF
+			</label>
+		</labels>
+		<transitions>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						APPROVED
+					</label>
+					<label language-id="en_GB">
+						APPROVED
+					</label>
+					<label language-id="bn_BD">
+						APPROVED
+					</label>
+				</labels>
+				<name>82e5f059-90f7-4a57-94a4-ca74e0373c8e</name>
+				<target>70c3be5a-8efa-45dd-acfd-cc51ad2c2e9b</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<labels>
+					<label language-id="en_US">
+						REJECT
+					</label>
+					<label language-id="en_GB">
+						REJECT
+					</label>
+					<label language-id="bn_BD">
+						REJECT
+					</label>
+				</labels>
+				<name>67abf97e-7a10-40d8-9d09-048f5c54c68a</name>
+				<target>6dfba147-76ca-4c03-a916-ebb638f547ec</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+</workflow-definition>

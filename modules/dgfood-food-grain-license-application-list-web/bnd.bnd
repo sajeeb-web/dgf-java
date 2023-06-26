@@ -1,0 +1,6 @@
+Bundle-Name: dgfood-food-grain-license-application-list-web
+Bundle-SymbolicName: bd.gov.dgfood.food.grain.license.application.list
+Bundle-Version: 1.0.0
+Export-Package: bd.gov.dgfood.food.grain.license.application.list.constants
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

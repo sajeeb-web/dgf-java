@@ -1,0 +1,79 @@
+ .dgfood-food-grain-license-loginpageheader {
+}
+ 
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none !important;
+  color: #fff;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.log-button{
+  background-color:#559210 !important ;
+  
+  }
+  
+
+.nav-icons{
+font-size:20px;
+}
+
+@media only screen and (max-width: 576px){
+  *{
+  font-size:13px;
+  }
+   .logo-image{
+    height:35px !important;
+  }
+  .log-button{
+    background-color:#559210 !important ;
+    font-size: 13px !important ;
+    }
+    
+ 
+ }
+  @media screen and (max-width: 400px){
+
+  .logo-image{
+    display:none !important;
+  }
+  .logo img{
+  display: none !important;
+  }
+  *{
+  font-size:8px;
+  }
+   .log-button{
+    background-color:#559210 !important ;
+    font-size: 8px !important ;
+    }
+  .custom-margin{
+  padding-top:0 !important;
+  margin-top:-15px !important;
+  
+  }
+
+.logo-text{
+margin-top:10px;
+
+}
+
+.custom-body {
+top: 0;
+right: 0;
+width: 50% !important;
+border-left: 1px solid rgba(0,0,0,.2);
+transform: translateX(100%);
+}
+}

@@ -1,0 +1,6 @@
+Bundle-Name: dgfood-food-grain-license-FGL-user-license-view
+Bundle-SymbolicName: bd.gov.dgfood.food.grain.license.fgl.user.license.view
+Bundle-Version: 1.0.0
+Export-Package: bd.gov.dgfood.food.grain.license.fgl.user.license.view.constants
+-liferay-aggregate-resource-bundles: \
+bd.gov.dgfood.i18n

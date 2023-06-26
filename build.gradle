@@ -1,0 +1,7 @@
+// Check GETTING_STARTED.markdown for information regarding usage.
+repositories {
+    maven {
+	url "https://gitea.docker.lan/api/packages/jenkins/maven"
+    }
+}
+

@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="bd.gov.dgfood.food.friendly.program">
+	<namespace>FFPB</namespace>
+	
+	
+	
+	
+	<entity local-service="true" name="DlrDistributionDetails"  remote-service="true"  table="dgf_ffp_dlr_dstrbn_dtls">
+
+		<!-- PK fields -->
+
+		<column name="dstrbnId" primary="true" type="long" />
+
+		<!-- Table dlr Distribution Details -->
+
+		<column name="dlrRegNo" type="long" />
+		<column name="ffpRegstrId" type="long" />
+		<column name="selLingDate" type="Date" />		
+		<column name="commodityId" type="long" />
+		<column name="commodityName" type="String" />
+		<column name="sellingPrice" type="String" />
+		<column name="sellingQty" type="long" />
+		<column name="stockBfrSelling" type="long" />
+		<column name="stockAfterSelling" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="createdBy" type="long" />
+		<column name="companyId" type="long" />
+		<column name="inventoryId" type="long" />
+        
+        
+        <finder name="dstrbnIdFinder" return-type="DlrDistributionDetails">
+            <finder-column name="dstrbnId"></finder-column>
+        </finder>
+        <finder name="dlrregnoFinder" return-type="Collection">
+            <finder-column name="dlrRegNo"></finder-column>
+        </finder>
+        <finder name="ffpregstridFinder" return-type="Collection">
+            <finder-column name="ffpRegstrId"></finder-column>
+        </finder>
+        <finder name="inventoryidFinder" return-type="Collection">
+            <finder-column name="inventoryId"></finder-column>
+        </finder>
+        
+        
+        
+        <reference entity="FfpbDetails" package-path="bd.gov.dgfood.food.friendly.program"></reference>
+        <reference entity="InvtoryDetails" package-path="bd.gov.dgfood.food.friendly.program"></reference>
+        
+        
+  
+	</entity>
+	
+	<entity local-service="true" name="InvtoryDetails" remote-service="true"  table="dgf_ffp_invtory_dtls">
+
+		<!-- PK fields -->
+
+		<column name="inventoryId" primary="true" type="long" />
+
+		<!--Dgf Invtory Details -->
+
+		<column name="dlrRegNo" type="long" />
+		<column name="allcNtfyNo" type="long" />
+		<column name="fromDate" type="Date" />
+		<column name="toDate" type="Date" />
+		<column name="commodityId" type="long" />
+		<column name="commodityName" type="String" />
+		<column name="noOfIndents" type="long" />
+		<column name="receivedQty" type="float" />
+		<column name="soldQty" type="float" />
+		<column name="balanceQty" type="float" />
+		<column name="createDate" type="long" />
+		<column name="companyId" type="long" />
+		<column name="createdBy" type="long" />
+        
+        <finder name="inventoryidFinder" return-type="InvtoryDetails">
+            <finder-column name="inventoryId"></finder-column>
+        </finder>
+        <finder name="dlrregnoFinder" return-type="Collection">
+            <finder-column name="dlrRegNo"></finder-column>
+        </finder>
+        <finder name="allcntfynoFinder" return-type="Collection">
+            <finder-column name="allcNtfyNo"></finder-column>
+        </finder>
+        
+        <reference entity="DlrFfpOmsAllcNtfyDetails" package-path="bd.gov.dgfood.food.friendly.program"></reference>
+        
+       
+
+	</entity>
+	
+	<entity local-service="true" name="FfpbDetails" remote-service="true"  table="dgf_ffpb_details">
+
+		<!-- PK fields -->
+
+		<column name="ffpRegstrId" primary="true" type="long" />
+
+		<!--Dgf ffpb Details -->
+
+		<column name="nationalId" type="long" />
+		<column name="dlrRegNo" type="long" />
+		<column name="ffpCardNo" type="String" />
+		<column name="dateOfBirth" type="Date" />
+		<column name="mobileNo" type="String" />
+		<column name="emialId" type="String" />
+		<column name="maritalStatus" type="long" />
+		<column name="gender" type="long" />
+		<column name="spouseNid" type="long" />
+		<column name="prstAddrRegion" type="String" />
+		<column name="prstAddrDisrict" type="String" />
+		<column name="prstAddrUpzilla" type="String" />
+		<column name="prstAddrUnion" type="String" />
+		<column name="prstAddrVillage" type="String" />
+		<column name="prstAddrWard" type="String" />
+		<column name="prstAddrZip" type="long" />
+		<column name="prstAddrPstoffc" type="long" />
+		<column name="prstAddrHoseaddr" type="String" />
+		<column name="ffpApplCrtdBy" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="ffpApplMdfyBy" type="long" />
+		<column name="modifiedDate" type="Date" />
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+		<column name="applApprejCmnts" type="String" />
+		<column name="ffpbApplStatus" type="long" />
+		<column name="version" type="float" />
+		<column name="status" type="long" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusDate" type="Date" />
+        
+        <finder name="ffpbNidFinder" return-type="FfpbDetails" unique="true" >
+            <finder-column name="nationalId"></finder-column>
+        </finder>
+        <finder name="ffpbMobileFinder" return-type="Collection">
+            <finder-column name="mobileNo"></finder-column>
+        </finder>
+        <finder name="ffpregstridFinder" return-type="FfpbDetails">
+            <finder-column name="ffpRegstrId"></finder-column>
+        </finder>
+
+	</entity>
+	
+	<entity local-service="true" name="DlrFfpOmsAllcNtfyDetails" remote-service="true"  table="dgf_ffp_oms_allc_ntfy_dtls">
+
+		<!-- PK fields -->
+
+		<column name="allocNtfyId" primary="true" type="String" />
+
+		<!--Dgf FFP OMS ALLC NTFY Details -->
+
+		
+		<column name="prgrmType" type="String" />		 
+		<column name="salesOrgName" type="String" />
+		<column name="dstrbtnChnnl" type="String" />
+		<column name="year" type="long" />
+		<column name="salesOffice" type="String" />
+		<column name="memoNo" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="duration" type="String" />
+		<column name="commodityId" type="long" />
+		<column name="commodityName" type="String" />
+		<column name="econmcPrice" type="long" />
+		<column name="salePrceToEndCstmr" type="long" />
+		<column name="unitPrice" type="String" />
+		<column name="maxAlltmntPDay" type="float" />
+		<column name="maxSellQtyPCstmr" type="float" />
+		<column name="createDate" type="Date" />
+	
+	</entity>
+	
+	
+	
+	
+	
+</service-builder>

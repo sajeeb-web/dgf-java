@@ -1,0 +1,46 @@
+.dgfood-food-grain-license-profiledetails {
+}
+
+      .green-text {
+        color: #5bb600;
+      }
+    
+      .card-bg {
+        background-color: #f4f4f4;
+      }
+      
+      .profile-bg {
+        width: 250px;
+        height: 250px;
+        background: lightgray;
+      }
+      .profile-bg i {
+        font-size: 100px;
+      }
+   
+    
+      
+li{
+  list-style: none;
+}
+.alignMe{
+	padding-left:0 !important;
+}
+      .alignMe .custom-colon {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+  padding-right: 5px; /* Ensures colon does not overlay the text */
+
+}
+
+.alignMe .custom-colon::after {
+  content: ":";
+  position: absolute;
+  right: 5px;
+}
+      @media screen and (max-width: 600px) {
+  .main-div{
+    padding: 1rem;
+  }
+}

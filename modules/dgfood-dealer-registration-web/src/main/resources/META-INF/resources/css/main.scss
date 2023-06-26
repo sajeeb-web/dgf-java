@@ -1,0 +1,27 @@
+.dgfood-dealer-registration-web {
+
+}
+
+/* form label ta duble asar karone use kora hoyeche*/
+.form-group label {
+  display: none;
+}
+
+
+
+
+/* preview page aline ment thik korar jonno use kora hoiche*/
+.alignMe .custom-colon {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+  padding-right: 5px;
+  /* Ensures colon does not overlay the text */
+
+}
+
+.alignMe .custom-colon::after {
+  content: ":";
+  position: absolute;
+  right: 15px;
+}

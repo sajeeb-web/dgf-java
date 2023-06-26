@@ -1,0 +1,125 @@
+.FGLicenseRegistrationForm {
+
+}
+
+
+
+     
+      .prog-circle {
+        width: 20px;
+        height: 19px;
+        border-radius: 50%;
+       
+      }
+      .prog-hr {
+        height: 3px;
+        width: 30%;
+        margin-left: -3px;
+        background-color: #3b3535;
+      }
+      .btn-reset{
+background-color:#808080 !important;
+ color:#ffffff !important;
+}
+      .iti {
+        width: 100%;
+      }
+
+.main-div {
+  padding: 0 6rem;
+}
+
+li {
+  list-style: none;
+}
+
+dl, ol, ul {
+    margin-bottom: 0.5rem !important;
+}
+.alignMe .custom-colon {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+  padding-right: 5px;
+  /* Ensures colon does not overlay the text */
+
+}
+
+.alignMe .custom-colon::after {
+  content: ":";
+  position: absolute;
+  right: 15px;
+}
+
+.mark{
+    background-color: #bcf4bc !important;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 6px 15px 6px 15px;
+    }
+    .mark:hover{
+    background-color: #c8f8c8 !important;
+    }
+
+
+@media screen and (max-width:600px) {
+  .main-div {
+  padding: 1rem;
+}
+
+* {
+  font-size: 12px;
+}
+
+.card_body {
+  padding: 5px 10px !important;
+}
+
+}
+
+// css for preloader
+.loader {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .loader span {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: #14294f;
+  animation: loaderAnimation 1s ease-in-out infinite;
+  }
+
+  .loader span:nth-child(1) {
+  animation-delay: 0.1s;
+  }
+
+  .loader span:nth-child(2) {
+  animation-delay: 0.2s;
+  }
+
+  .loader span:nth-child(3) {
+  animation-delay: 0.3s;
+  }
+
+  @keyframes loaderAnimation {
+  0% {
+  opacity: 0.2;
+  }
+  20% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0.2;
+  }
+  }

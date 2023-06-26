@@ -1,0 +1,221 @@
+@import 'components/breadcrumb';
+@import 'components/color';
+@import 'components/group-item';
+@import 'components/info-panel';
+@import 'components/navbars';
+@import 'components/sidebar';
+@import 'components/table';
+@import 'components/widget';
+@import 'portlet/portlet';
+@import 'portlet/portlet_decorators';
+
+@import 'custom_properties/custom_properties_set';
+
+body {
+	header {
+		.field-wrapper {
+			position: absolute;
+			right: 4px;
+			top: 2px;
+
+			a {
+				color: #fff;
+				text-decoration: none;
+			}
+		}
+		
+		.field-wrapper,
+		.form-group {
+			margin-bottom: 0;
+		}
+
+		.portlet {
+			margin-bottom: 0;
+
+			&:hover {
+				z-index: 1034;
+			}
+		}
+
+		.search-input {
+			font-size: 0.88rem;
+			padding: 0.28rem 2rem 0.28rem 1rem;
+		}
+
+		.text-default {
+			color: #6b6c7e;
+			font-weight: 600;
+		}
+
+		.user-personal-bar {
+			.fieldset {
+				position: relative;
+			}
+
+			.user-avatar-link .panel-notifications-count {
+				right: calc(100% - 0.75rem);
+				top: -0.35rem;
+			}
+		}
+	}
+
+}
+
+a{
+	text-decoration: none !important;
+}
+.alignMe{
+	padding-left:0 !important;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+   .prog-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .prog-hr {
+            height: 3px;
+            width: 30%;
+            margin-left: -3px;
+            background-color: #3b3535;
+        }
+.green-text {
+ color: #5bb600 !important;
+}
+/* button style */
+.button-secondary{
+	background-color: gray !important;
+	color: #fff !important;
+  }
+  .button-secondary:hover{
+	background-color: rgb(99, 92, 92) !important;
+	color: #fff !important;
+  }
+  .button-danger{
+	background-color: red !important;
+	color: #fff !important;
+  }
+  .button-danger:hover{
+	background-color: rgb(231, 57, 57) !important;
+	color: #fff !important;
+  }
+
+.green-bg {
+ background-color: #61c002 !important;
+ color: #fff !important;
+
+}
+.green-bg:hover {
+ background-color: #61c002 !important;
+ color: #fff !important;
+
+}
+    .btn-reset{
+        background-color:  lightslategrey !important;
+            color: #ffffff !important;
+        }
+		.btn-reset:hover{
+			background-color:  rgb(128, 152, 177) !important;
+				color: #ffffff !important;
+			}
+    
+/* button styles end*/
+	.user-avatar-link {
+		display: block;
+		position: relative;
+
+		.panel-notifications-count {
+			display: block;
+			margin: 0;
+			max-width: none;
+			position: absolute;
+			right: calc(100% - 0.7rem);
+			top: -0.4rem;
+		}
+
+		.text-default {
+			align-items: center;
+			display: flex;
+
+			.user-full-name {
+				margin-left: 0.5rem;
+
+				@include media-breakpoint-down(xs) {
+					display: none;
+				}
+			}
+		}
+	}
+
+.btn-group + .info-panel {
+	@include media-breakpoint-up(sm) {
+		top: auto;
+	}
+
+}
+//popup-liferay-mask-css
+.yui3-skin-sam .yui3-widget-mask{
+    background-color: transparent !important;
+    zoom: 1;
+    -ms-filter: "alpha(opacity=40)";
+    filter: alpha(opacity=40);
+    opacity: 0;
+}
+//popup-liferay-mask-css-end
+
+   
+
+//Search container custom styles.------------.
+      .search-container-wrapper table {
+        border: none;
+         overflow-y: hidden !important;
+        /* Adjust column widths as needed */
+    }
+
+    .lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle {
+     color: #ffffff !important;
+      background-color:#5bb600 !important;
+  }
+    .lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle:active, .lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle:focus, .lfr-search-container-wrapper .lfr-icon-menu > .dropdown-toggle:hover {
+    background-color:#3a690b !important;
+    border-radius: 4px;
+  
+}
+ //Search container custom styles end------------.
+ 
+ 
+li {
+  list-style: none;
+}
+
+// preview page alinement start
+.alignMe .custom-colon {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+  padding-right: 5px;
+  /* Ensures colon does not overlay the text */
+}
+.alignMe .custom-colon::after {
+  content: ":";
+  position: absolute;
+  right: 15px;
+}
+// preview page alinement end
+ 
+#footer {
+background-color:green;
+	color: red;
+	margin-top: 1rem;
+
+	> .container {
+		padding-bottom: 3rem;
+		padding-top: 3rem;
+	}
+}
